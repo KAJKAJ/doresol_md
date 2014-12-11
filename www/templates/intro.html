@@ -1,0 +1,48 @@
+<ion-nav-bar class="bar-light" animation="nav-title-slide-ios7" style="display:none">
+	<ion-nav-back-button class="button-clear">
+  <i class="ion-arrow-left-c"></i>
+	</ion-nav-back-button>
+</ion-nav-bar>
+
+<ion-view title="도래솔">
+  <ion-slide-box on-slide-changed="slideHasChanged($index)">
+	  <ion-slide>
+	    <div class="intro_box">
+	    	<h1>BLUE</h1>
+	    	이미 회원이신가요? <a ui-sref="login">로그인</a>
+	    </div>
+	  </ion-slide>
+	  <ion-slide>
+	    <div style="padding-top:100px;">
+	    	<h1>도래솔</h1>
+	    </div>
+
+	    <div class="intro_box">
+	    	<div class="row">
+	    		<div class="col">
+			    	<button class="button button-block button-positive" ng-click="loginOauth('facebook')">
+						  <i class="icon ion-social-facebook"></i> 페이스북으로 가입하기
+						</button>
+					</div>
+				</div>
+				<div class="row">
+				  <div class="col">
+				  	<button class="button button-block button-light" ui-sref="login">
+						  로그인
+						</button>
+				  </div>
+				  <div class="col">
+				  	<button class="button button-block button-light" ui-sref="signup">
+						  이메일 가입
+						</button>
+				  </div>
+				</div>
+				<div class="row">
+					<div class="col">
+					가입과 함께 약관에 동의하신 것으로 간주합니다. <a ui-sref="term">약관 보기</a>
+					</div>
+				</div>
+	    </div>
+	  </ion-slide>		  
+	</ion-slide-box>
+</ion-view>

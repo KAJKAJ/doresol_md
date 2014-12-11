@@ -1,0 +1,73 @@
+<fa-header-footer-layout>
+  <fa-modifier fa-size="[undefined, 90]" fa-translate="[0, 0, 1]">
+    <fa-view>
+      <fa-surface>
+      	  <div ng-include="'modules/core/views/navbar.html'"></div>
+      </fa-surface>
+    </fa-view>
+  </fa-modifier>
+	<fa-modifier fa-translate="[0, 0, 0]">
+	  <fa-scroll-view fa-pipe-from="eventHandler">
+	  	<fa-view>
+		  	<fa-modifier ng-if="memorial.public||!role.isGuest" fa-size="[undefined, getScrollContentHeight('scroll-content-member')]">
+	  			<fa-surface fa-pipe-to="eventHandler">
+		  			<div id="scroll-content-member">
+		  				
+							<div class="block-title" ng-if="getWaitingsCnt()>0">
+					      <h5>가입 승인 대기 <span class="badge"> {{getWaitingsCnt()}}</span></h4>
+					    </div>
+		  				
+		  				<div class="media" style="margin-left:10px;margin-right:10px;" ng-repeat="(uid, member) in waitings">
+						  	<div class="media-left" >
+		      				<img ng-src="{{users[uid].profile.file.url}}" class="img-responsive" style="width:150px;height:150px"/>
+		      			</div>
+		      			<div class="media-body">
+			      			<h5 class="media-heading">
+			      				<a>{{users[member.uid].profile.name}}</a>
+			      			</h5>
+		      				<button ng-if="leader.uid == user.uid" type="button" class="btn btn-success" ng-click="moveMember(uid)">가입 승인하기</button>
+			          </div>
+		        	</div>
+
+							<div style="margin-left:10px;margin-right:10px;">
+		      	  	<div class="block-title">
+					      	<h5>멤버 <span class="badge"> {{getMembersCnt() + 1}}</span></h4>
+					    	</div>
+			  				
+			  				<div class="media">
+				  				<div class="media-left">
+						  	 		<img ng-src="{{users[leader.uid].profile.file.url}}" class="img-responsive" style="width:150px;height:150px"/>
+						  	 	</div>
+						  	 	<div class="media-body">
+						  	 		<h5 class="media-heading">
+						  	 			<a>{{users[leader.uid].profile.name}}</a>
+								    </h5>
+								    <span class="text-muted text-small"><em>리더</em></span>
+								  </div>
+								</div>
+
+			  				
+			  				<div class="media" ng-repeat="(uid, member) in members">
+							  	<div class="media-left">
+			      				<img ng-src="{{users[uid].profile.file.url}}" class="img-responsive" style="width:150px;height:150px"/>
+			      			</div>
+			      			<div class="media-body" >
+				      			<h5 class="media-heading">
+				      				<a>{{users[member.uid].profile.name}}</a>
+				      			</h5>
+			      				<button ng-if="leader.uid == user.uid" type="button" class="btn btn-success" ng-click="removeMember(uid, false)">탈퇴 시키기</button>
+				          	<button ng-if="uid == user.uid" type="button" class="btn btn-success" ng-click="removeMember(uid, true)">탈퇴하기</button>
+				          </div>
+			        	</div>
+			        </div> 
+			      </div>
+		  		</fa-surface>
+		  	</fa-modifier>
+		  	<fa-modifier ng-if="!memorial.public&&role.isGuest">
+					<fa-surface >
+				  	<div ng-include="'modules/core/views/block.html'"></div>
+				  </fa-surface>
+				</fa-modifier>
+		  </fa-view>
+	</fa-modifier>
+</fa-header-footer-layout>

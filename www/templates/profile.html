@@ -1,0 +1,35 @@
+<ion-side-menus>
+  <!-- Left menu -->
+  <div ng-include="'templates/sidemenu_left.html'"></div>
+
+  <!-- Center content -->
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-light" animation="nav-title-slide-ios7"></ion-nav-bar>
+    <ion-view title="프로필">
+      <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+      </ion-nav-buttons>
+
+      <ion-content>
+        <div class="row">
+          <div class="col">
+            <div ng-if="memorial.public||!role.isGuest">
+              <div class="text-center">
+                <img ng-src="{{hostUrl + memorial.file.url}}" class="img-center"></img>
+              </div>
+              <div class="list">
+                <span class="item item-icon-left"><i class="icon ion-person"></i> {{memorial.name}} </span>
+                <span class="item item-icon-left"><i class="icon ion-ios7-heart"></i> {{memorial.dateOfBirth}} </span>
+                <span class="item item-icon-left"><i class="icon ion-ios7-star"></i> {{memorial.dateOfDeath}} </span>
+                <span class="item item-icon-left"><i class="icon ion-ios7-bookmarks"></i> {{memorial.description}} </span>
+              </div>
+            </div>
+            <div ng-if="!memorial.public&&role.isGuest">
+              <div ng-include="'templates/block.html'"></div>
+            </div>
+          </div>
+        </div>
+      </ion-content>
+    </ion-view>
+  </ion-side-menu-content>
+</ion-side-menus>
