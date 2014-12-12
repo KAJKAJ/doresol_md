@@ -60,6 +60,7 @@ angular
     $scope.signup = function(form) {
       $scope.signupErrors = '';
       $scope.inProgress = true;
+
       if(form.$valid) {
         Auth.register($scope.signupUser).then(function (value){
           $scope.inProgress = false;

@@ -10,17 +10,17 @@
 	<md-content md-theme="green">
     <form class="form" name="loginForm" ng-submit="login(loginForm)" novalidate style="padding: 20px;">
       <md-text-float type='email' label="이메일" ng-model="loginUser.email" ng-required="true"> </md-text-float>
-      <p class="item assertive error-sm" ng-show="loginForm.email.$error.email">
+      <p class="error-sm" ng-show="loginForm.email.$error.email">
 				유효한 이메일 주소가 아닙니다.
 			</p>
       <md-text-float type='password' label="비밀번호" ng-model="loginUser.password" class="long" ng-required="true"> </md-text-float>
-		  <p class="item assertive error-sm" ng-show="loginForm.password.$error.minlength">
+		  <p class="error-sm" ng-show="loginForm.password.$error.minlength">
         암호는 3글자 이상이여야 합니다.
       </p>
-		  <p class="item assertive error-sm" ng-show="loginForm.email.$error.required && loginForm.password.$error.required && loginSubmitted">
+		  <p class="error-sm" ng-show="loginForm.email.$error.required && loginForm.password.$error.required && loginSubmitted">
          이메일 주소와 암호를 넣어주세요.
       </p>
-      <p class="item assertive error-sm" ng-show="loginErrors">{{loginErrors}}</p>
+      <p class="error-sm" ng-show="loginErrors">{{loginErrors}}</p>
 			<md-button class="md-primary md-raised" md-theme="green" type="submit" ng-disabled="loginForm.$invalid">로그인</md-button>
     </form>
 	  <div ng-show="inProgress" layout="row" layout-sm="column" layout-align="space-around center">
