@@ -1,0 +1,11 @@
+.sidemenu{
+	z-index:2000;
+	position:fixed;
+	top:0px;
+	left:0px;
+	height:100%;
+}
+
+md-item-content.active{
+	color:orange;
+}
