@@ -1,6 +1,6 @@
 angular.module('doresolApp')
 .config(function($stateProvider, $urlRouterProvider) {
-   $urlRouterProvider.otherwise('/story');
+   $urlRouterProvider.otherwise('/intro');
 
   /**
    * @ngdoc event

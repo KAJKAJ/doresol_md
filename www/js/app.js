@@ -9,8 +9,8 @@ angular.module('doresolApp', ['ngMaterial','ui.router', 'firebase', 'env'])
 .run(function($location,  $rootScope, $state, Auth, User ,Composite) {
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-    console.log(event);
-    console.log(toState);
+    // console.log(event);
+    // console.log(toState);
     var _getUserAuth = function(){
       return Auth.getCurrentUserFromFirebase().then(function(value){
         return value.uid;
@@ -24,17 +24,18 @@ angular.module('doresolApp', ['ngMaterial','ui.router', 'firebase', 'env'])
     };
 
     // 인증해야 되는 경우
-    // if (toState.authenticate){
-    //   // 사용자가 계정이 없을 때
-    //   if(!User.getCurrentUser()){
-    //     event.preventDefault();
-    //     _getUserAuth().then(_getUserData).then(Composite.setMyMemorials).then(function(value){
-    //       $state.go(toState, toParams);
-    //     },function(error){
-    //       $state.go('intro');
-    //     });
-    //   }
-    // }
+    if (toState.authenticate){
+      // 사용자가 계정이 없을 때
+      if(!User.getCurrentUser()){
+        event.preventDefault();
+        _getUserAuth().then(_getUserData).then(Composite.setMyMemorials).then(function(value){
+          $state.go(toState, toParams);
+        },function(error){
+          console.log('not logged in');
+          $state.go('intro');
+        });
+      }
+    }
   });
 
 });
