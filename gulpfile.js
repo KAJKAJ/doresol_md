@@ -50,20 +50,6 @@ gulp.task('browser-sync', function() {
     startPath: 'index.html'
   });
 
-  // gulp.watch([
-  //   __dirname + '/www/**/*.{js,html,css,svg,png,gif,jpg,jpeg}',
-  // ], {
-  //   debounceDelay: 400
-  // }, function() {
-  //   browserSync.reload();
-  // });
-
-  // gulp.watch([
-  //   __dirname + '/scss/**/*.scss'
-  // ], ['sass']);
-  
-  // gulp.watch('./scss/*.scss', ['sass']);  
-
 });
 
 gulp.task('sass', function(done) {
