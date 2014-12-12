@@ -1,4 +1,4 @@
-<ion-side-menu side="left" ng-controller="SideMenuLeftCtrl">
+<!-- <ion-side-menu side="left" ng-controller="SideMenuLeftCtrl">
   <header class="bar bar-header bar-balanced">
     <h1 class="title">메뉴</h1>
   </header>
@@ -15,4 +15,49 @@
       <ion-item nav-clear menu-close ui-sref="member" ng-class="{active: isActive('/member')}"> 로그아웃 </ion-item>
     </ion-list>
   </ion-content>
-</ion-side-menu>
+</ion-side-menu> -->
+
+<md-sidenav md-component-id="left" class="md-sidenav-left sidemenu">
+  <md-toolbar class="md-theme-light">
+    <h1 class="md-toolbar-tools">
+      <span>메뉴</span>
+    </h1>
+  </md-toolbar>
+  <md-content>
+    <md-list>
+      <md-item>
+        <md-item-content ui-sref="profile" ng-class="{active: isActive('/profile')}">
+          <div class="md-tile-content"><i class="fa fa-info-circle"></i> 프로필</div>
+        </md-item-content>
+      </md-item>
+      <md-item>
+        <md-item-content ui-sref="story" ng-class="{active: isActive('/story')}">
+          <div class="md-tile-content"><i class="fa fa-book"></i> 이야기</div>
+        </md-item-content>
+      </md-item>
+      <md-item>
+        <md-item-content ui-sref="letter" ng-class="{active: isActive('/letter')}">
+          <div class="md-tile-content"><i class="fa fa-envelope"></i> 편지</div>
+        </md-item-content>
+      </md-item>
+      <md-item>
+        <md-item-content ui-sref="member" ng-class="{active: isActive('/member')}">
+          <div class="md-tile-content"><i class="fa fa-users"></i> 멤버</div>
+        </md-item-content>
+        <md-divider></md-divider>
+      </md-item>
+
+      <md-item>
+        <md-item-content ui-sref="setting" ng-class="{active: isActive('/setting')}">
+          <div class="md-tile-content"><i class="fa fa-cog"></i> 설정</div>
+        </md-item-content>
+      </md-item>
+      <md-item>
+        <md-item-content ui-sref="member">
+          <div class="md-tile-content"><i class="fa fa-sign-out"></i> 로그아웃</div>
+        </md-item-content>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-item>
+    </md-list>
+  </md-content>
+</md-sidenav>

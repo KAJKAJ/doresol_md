@@ -1,5 +1,11 @@
+<div ng-include="'templates/sidemenu_left.html'" ng-controller="SideMenuLeftCtrl"></div>
+<md-toolbar md-theme="green" class="toolbar">
+  <h3 class="md-toolbar-tools">
+    <span><i class="fa fa-align-justify" ng-click="openLeftMenu()"></i> 이야기</span>
+  </h3>
+</md-toolbar>
 
-<md-content>
+<md-content class="toolbar-padding">
   <div ng-if="memorial.public||!role.isGuest">
     <md-card ng-repeat="story in storiesObject" ng-click="goToDetail(story.$id)">
      <img ng-src="{{hostUrl + story.file.url}}" class="img-center">

@@ -1,9 +1,0 @@
-.intro {
-  background-image: url("/img/intro.png");
-  background-repeat: repeat-y;
-  background-size: 100%;
-  background-position: center; }
-  .intro .intro-btn {
-    width: 200px; }
-  .intro .title {
-    color: white; }

@@ -30,3 +30,21 @@
 .clear{
 	clear:both;
 }
+
+.toolbar{
+  position:fixed;
+  z-index:1000;
+  top:0px;
+  left:0px;
+}
+
+.toolbar-padding{
+  top:68px;
+}
+
+md-backdrop.md-sidenav-backdrop{
+  z-index:1500;
+}
+md-backdrop.md-opaque.md-default-theme{
+  position:fixed;
+}
