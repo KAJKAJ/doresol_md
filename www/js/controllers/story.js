@@ -8,7 +8,7 @@
  */
 angular
 .module('doresolApp')
-.controller('StoryCtrl', function($scope,ENV,$state, Memorial, User, MyStory, Util,$mdSidenav){
+.controller('StoryCtrl', function($scope,ENV,$state, Memorial, User, MyStory, Util){
   $scope.hostUrl = ENV.HOST;
 
   $scope.memorial = Memorial.getCurrentMemorial();
@@ -39,11 +39,6 @@ angular
     $state.go('story_detail', {id: storyId});
   }
 
-  $scope.toggleLeft = function() {
-    $mdSidenav('left').toggle();
-  };
-  $scope.toggleRight = function() {
-    $mdSidenav('right').toggle();
-  };
+  
   
 });
