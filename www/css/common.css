@@ -7,6 +7,10 @@
   height: 100%;
   width: 100%; }
 
+.error-sm {
+  font-size: 80%;
+  color: maroon; }
+
 .img-center {
   margin: 0 auto;
   width: 100%; }
@@ -20,6 +24,7 @@
 
 .clear {
   clear: both; }
+
 
 .toolbar {
   position: fixed;
