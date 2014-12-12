@@ -1,75 +1,39 @@
-<!-- <ion-side-menus>
-  <div ng-include="'templates/sidemenu_left.html'"></div>
 
-  <ion-side-menu-content>
-    <ion-nav-bar class="bar-light" animation="nav-title-slide-ios7"></ion-nav-bar>
-    <ion-view title="이야기">
-      <ion-nav-buttons side="left">
-        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-      </ion-nav-buttons>
-
-      <ion-content>
-        <div class="row">
-          <div class="col">
-            <div ng-if="memorial.public||!role.isGuest">
-            	<div class="list card" ng-repeat="story in storiesObject" ng-click="goToDetail(story.$id)">
-							  <div class="item item-avatar">
-							    <img ng-src="{{users[story.ref_user].profile.file.url}}">
-							    <h2 class="balanced">{{users[story.ref_user].profile.name}}</h2>
-							    <p>{{story.updatedAt}} 수정</p>
-							  </div>
-							  <div class="item item-body">
-							    <img class="full-image" ng-src="{{hostUrl + story.file.url}}">
-							    <p>
-							      {{story.text.text|limitTo:100}} <span ng-if="story.text.text.length>100">...</span>
-							    </p>
-							  </div>
-							  <div class="item tabs tabs-secondary tabs-icon-right">
-							    <a class="tab-item"></a>
-						     	<a class="tab-item"></a>
-							    <a class="tab-item dark" href="#">
-							      <i class="icon ion-chatbox"></i>
-							      댓글 {{objectSize(story.comments)}} 개
-							    </a>							    
-							  </div>
-							</div>
-
+<md-content>
+  <div ng-if="memorial.public||!role.isGuest">
+    <md-card ng-repeat="story in storiesObject" ng-click="goToDetail(story.$id)">
+     <img ng-src="{{hostUrl + story.file.url}}" class="img-center">
+     <!-- <div class="comment-count pull-right">
+      <i class="fa fa-comment"></i> {{objectSize(story.comments)}}
+     </div>
+     <md-list>
+        <md-item>
+          <md-item-content>
+            <div class="md-tile-left">
+                <img ng-src="{{users[story.ref_user].profile.file.url}}" class="thumbnail">
             </div>
-            <div ng-if="!memorial.public&&role.isGuest">
-              <div ng-include="'templates/block.html'"></div>
+            <div class="md-tile-content">
+              <h3>{{users[story.ref_user].profile.name}}</h3>
+              <h4>{{story.updatedAt}} 수정</h4>
             </div>
-          </div>
-        </div>
-      </ion-content>
-    </ion-view>
-  </ion-side-menu-content>
-</ion-side-menus> -->
-
-
-<ons-page>
-  <ons-list>
-    <ons-list-item ng-repeat="story in storiesObject">
-      <div class="item item-avatar">
-                  <img ng-src="{{users[story.ref_user].profile.file.url}}">
-                  <h2 class="balanced">{{users[story.ref_user].profile.name}}</h2>
-                  <p>{{story.updatedAt}} 수정</p>
-                </div>
-                <div class="item item-body">
-                  <img class="full-image" ng-src="{{hostUrl + story.file.url}}">
-                  <p>
-                    {{story.text.text|limitTo:100}} <span ng-if="story.text.text.length>100">...</span>
-                  </p>
-                </div>
-                <div class="item tabs tabs-secondary tabs-icon-right">
-                  <a class="tab-item"></a>
-                  <a class="tab-item"></a>
-                  <a class="tab-item dark" href="#">
-                    <i class="icon ion-chatbox"></i>
-                    댓글 {{objectSize(story.comments)}} 개
-                  </a>                  
-                </div>
-    </ons-list-item>
-  </ons-list>
-</ons-page>
+          </md-item-content>
+        </md-item>
+      </md-list> -->
+      <div class="author pull-left">
+        {{users[story.ref_user].profile.name}}
+      </div> 
+      <div class="comment-count pull-right">
+        <i class="fa fa-comment"></i> {{objectSize(story.comments)}}
+      </div>
+      <div class="clear"></div>
+     <p>
+       {{story.text.text|limitTo:100}} <span ng-if="story.text.text.length>100">...</span>
+     </p>
+    </md-card>
+  </div>
+  <div ng-if="!memorial.public&&role.isGuest">
+    <div ng-include="'templates/block.html'"></div>
+  </div>
+</md-content>
 
 

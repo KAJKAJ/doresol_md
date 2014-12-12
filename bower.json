@@ -6,6 +6,7 @@
     "moment": "~2.8.4",
     "angularfire": "~0.9.0",
     "angular-ui-router": "~0.2.13",
-    "angular-material": "~0.6.1"
+    "angular-material": "~0.6.1",
+    "fontawesome": "~4.2.0"
   }
 }
