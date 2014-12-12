@@ -49,30 +49,22 @@
  
 <md-content>
 	<div class="full-screen intro" layout="column" layout-align="center center">
-		<section>
+		<div class="title">
 			<h1>도래솔</h1>
-		</section>
+			<!-- <img src="/img/green_icon.png"/> -->
+		</div>
 
 		<div>
-			<md-button class="md-raised md-primary" ng-click="loginOauth('facebook')">페이스북으로 가입하기</md-button>
+			<md-button class="md-raised md-primary intro-btn" ng-click="loginOauth('facebook')">페이스북으로 가입하기</md-button>
 		</div>
 		<br/>
-		<div layout="row" layout-align="space-around center">
-			<div>
-				<md-button class="md-raised md-primary" md-theme="green" ui-sref="login">로그인</md-button>
-			</div>
-			<div>
-				<md-button class="md-raised md-primary" md-theme="blue-grey" ui-sref="signup">이메일 가입</md-button>
-			</div>
-			
+		<div>
+			<md-button class="md-raised md-primary intro-btn" md-theme="green" ui-sref="login">로그인</md-button>
 		</div>
-
-		<!-- <div>
-			<div>
-				가입과 함께 약관에 동의하신 것으로 간주합니다. <a ui-sref="term">약관 보기</a>
-			</div>
-		</div> -->
-
+		<br/>
+		<div>
+			<md-button class="md-raised md-primary intro-btn" md-theme="blue-grey" ui-sref="signup">이메일 가입</md-button>
+		</div>		
 	</div>
 	<!-- <div flex="66">
 		<div class="title">
