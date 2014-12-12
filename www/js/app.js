@@ -20,7 +20,7 @@ angular.module('doresolApp', ['ngMaterial','ui.router', 'firebase', 'env'])
     var _getUserData = function(userId){
       return User.getCurrentUserFromFirebase(userId).then(function(value){
         return value.uid;
-      });
+      });    
     };
 
     // 인증해야 되는 경우

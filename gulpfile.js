@@ -12,10 +12,6 @@ var bowerFiles = require('main-bower-files');
 var ngConstant = require('gulp-ng-constant');
 var browserSync = require('browser-sync');
 
-var paths = {
-  sass: ['./scss/**/*.scss']
-};
-
 gulp.task('default', ['dev']);
 
 gulp.task('dev', ['clean','sass','config_dev','index']);
@@ -24,30 +20,25 @@ gulp.task('beta', ['clean','sass','config_beta','index']);
 ////////////////////
 // serve
 ////////////////////
-gulp.task('serve', ['dev', 'browser-sync']);
+gulp.task('serve', ['dev', 'browser-sync', 'watch']);
 
-
-gulp.task('sass', function(done) {
-  console.log('sass');
-  // gulp.src('./scss/ionic.app.scss')
-  //   .pipe(sass())
-  //   .pipe(gulp.dest('./www/css/'))
-  //   .pipe(minifyCss({
-  //     keepSpecialComments: 0
-  //   }))
-  //   .pipe(rename({ extname: '.min.css' }))
-  //   .pipe(gulp.dest('./www/css/'))
-  //   .on('end', done);
-  gulp.src('./scss/*.scss')
-    .pipe(sass())
-    .pipe(gulp.dest('./www/css'));
-});
+gulp.task('watch',function(){
+  gulp.watch([
+    __dirname + '/www/**/*.{js,html,css,svg,png,gif,jpg,jpeg}',
+  ], {
+    debounceDelay: 400
+  }, function() {
+    browserSync.reload();
+  });
+  
+  gulp.watch(__dirname + '/scss/*.scss', ['sass']);  
+})
 
 ////////////////////
 // browser-sync
 ////////////////////
 gulp.task('browser-sync', function() {
-  browserSync({
+  return browserSync({
     server: {
       baseDir: __dirname + '/www/',
       directory: true
@@ -59,22 +50,35 @@ gulp.task('browser-sync', function() {
     startPath: 'index.html'
   });
 
-  gulp.watch([
-    __dirname + '/www/**/*.{js,html,css,svg,png,gif,jpg,jpeg}',
-  ], {
-    debounceDelay: 400
-  }, function() {
-    browserSync.reload();
-  });
+  // gulp.watch([
+  //   __dirname + '/www/**/*.{js,html,css,svg,png,gif,jpg,jpeg}',
+  // ], {
+  //   debounceDelay: 400
+  // }, function() {
+  //   browserSync.reload();
+  // });
 
   // gulp.watch([
   //   __dirname + '/scss/**/*.scss'
   // ], ['sass']);
   
-  gulp.watch('./scss/*.scss', function(){
-    gulp.run('sass');
-  });  
+  // gulp.watch('./scss/*.scss', ['sass']);  
 
+});
+
+gulp.task('sass', function(done) {
+  // gulp.src('./scss/ionic.app.scss')
+  //   .pipe(sass())
+  //   .pipe(gulp.dest('./www/css/'))
+  //   .pipe(minifyCss({
+  //     keepSpecialComments: 0
+  //   }))
+  //   .pipe(rename({ extname: '.min.css' }))
+  //   .pipe(gulp.dest('./www/css/'))
+  //   .on('end', done);
+  return gulp.src('./scss/*.scss')
+    .pipe(sass())
+    .pipe(gulp.dest('./www/css'));
 });
 
 gulp.task('config_dev', function () {
@@ -86,7 +90,7 @@ gulp.task('config_dev', function () {
     }
   }
 
-  gulp.src('config.json')
+  return gulp.src('config.json')
     .pipe(ngConstant({
       name: 'env',
       // deps: ['ngAnimate'],
@@ -107,7 +111,7 @@ gulp.task('config_beta', function () {
     }
   }
 
-  gulp.src('config.json')
+  return gulp.src('config.json')
     .pipe(ngConstant({
       name: 'env',
       // deps: ['ngAnimate'],
@@ -148,10 +152,6 @@ gulp.task('index', function(){
     .pipe(inject(gulp.src('./www/js/**/*.js', {read: false}), {relative: true}))
     .pipe(inject(gulp.src('./www/css/**/*.css', {read: false}), {relative: true}))
     .pipe(gulp.dest('./www'));
-});
-
-gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['sass']);
 });
 
 gulp.task('install', ['git-check'], function() {
