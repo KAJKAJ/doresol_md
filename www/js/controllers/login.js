@@ -7,6 +7,8 @@ angular
     $scope.signupUser = {};
     $scope.passwd = {};
 
+    $scope.inProgress = false;
+
     //set current memorial
     // Memorial.setCurrentMemorial(ENV.MEMORIAL_KEY);
 
@@ -31,10 +33,10 @@ angular
           password: $scope.loginUser.password
         })
         .then( function (value){
-          // console.log(value);
+          $scope.inProgress = false;
           _afterLogin(value.uid);
         } ,function(error){
-          console.log(error);
+          $scope.inProgress = false;
           var errorCode = error.code;
           switch(errorCode){
             case "INVALID_EMAIL":
@@ -51,20 +53,23 @@ angular
 
     $scope.login = function(form) {
       $scope.loginErrors = '';
+      $scope.inProgress = true;
       _login();
     }
 
     $scope.signup = function(form) {
       $scope.signupErrors = '';
+      $scope.inProgress = true;
       if(form.$valid) {
         Auth.register($scope.signupUser).then(function (value){
+          $scope.inProgress = false;
           User.setCurrentUser();
           User.getCurrentUserFromFirebase(value.uid).then(function(userData){
             _afterLogin(userData.uid);
           });
         }, function(error){
+          $scope.inProgress = false;
           var errorCode = error.code;
-          console.log(error);
           switch(errorCode){
             case "EMAIL_TAKEN":
               $scope.signupErrors = '이미 등록된 이메일 주소입니다.';
@@ -75,12 +80,13 @@ angular
     };
 
     $scope.passwdReset = function(form) {
-      console.log(form);
-
+      $scope.inProgress = true;
       if(form.$valid) {
         Auth.resetPassword($scope.passwd.email).then(function () {
+          $scope.inProgress = false;
           $scope.passwdErrors = "해당 이메일로 비밀번호 초기화가 발송되었습니다.";
         }, function(error) {
+          $scope.inProgress = false;
           $scope.passwdErrors = '등록되지 않은 이메일 주소입니다.';
         }
       )};

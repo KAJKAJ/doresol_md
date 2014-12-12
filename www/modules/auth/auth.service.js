@@ -41,6 +41,8 @@ angular.module('doresolApp')
           }).catch(function(err){
             dfd.reject(err);
           });
+        }, function(err) {
+          dfd.reject(err);
         });
 
         return dfd.promise;
