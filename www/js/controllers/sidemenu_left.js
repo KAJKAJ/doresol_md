@@ -13,7 +13,7 @@ angular.module('doresolApp')
     }
 
     $scope.isActive = function(route) {
-      console.log('isactive');
+      // console.log('isactive');
       return route === $location.path();
     }
   });
