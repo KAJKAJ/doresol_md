@@ -1,4 +1,4 @@
-<fa-header-footer-layout>
+<!-- <fa-header-footer-layout>
     <fa-modifier fa-size="[undefined, 54]" fa-translate="[0, 0, 1]">
 	    <fa-view>
 	      <fa-surface>
@@ -70,4 +70,37 @@
 		    </fa-surface>
 		  </fa-view>
 	  </fa-modifier>
-</fa-header-footer-layout>
+</fa-header-footer-layout> -->
+
+<md-toolbar md-theme="green" class="toolbar">
+  <h3 class="md-toolbar-tools">
+    <span>
+    	<i class="fa fa-chevron-left" ui-sref="story.id({id:story.$id})"></i> {{story.text.headline| limitTo:15}} <span ng-if="story.text.headline.length>15">...</span>
+    	<span ng-if="story.text.headline.length==0"> 뒤로</span>
+    </span>
+  </h3>
+</md-toolbar>
+
+<md-content class="toolbar-padding">
+  <!-- <div ng-if="memorial.public||!role.isGuest">
+    <md-card ng-repeat="story in storiesObject" ng-click="goToDetail(story.$id)">
+     <img ng-src="{{hostUrl + story.file.url}}" class="img-center">
+     
+      <div class="author pull-left">
+        {{users[story.ref_user].profile.name}}
+      </div> 
+      <div class="comment-count pull-right">
+        <i class="fa fa-comment"></i> {{objectSize(story.comments)}}
+      </div>
+      <div class="clear"></div>
+     <p>
+       {{story.text.text|limitTo:100}} <span ng-if="story.text.text.length>100">...</span>
+     </p>
+    </md-card>
+  </div>
+  <div ng-if="!memorial.public&&role.isGuest">
+    <div ng-include="'templates/block.html'"></div>
+  </div> -->
+</md-content>
+
+

@@ -22,6 +22,10 @@ angular
 
   $scope.role = Memorial.getRole();
 
+  //set focus
+  if($state.params.id){
+    Util.focus($state.params.id);
+  }
   $scope.objectSize = function(object){
     if(object){
       return Util.objectSize(object);

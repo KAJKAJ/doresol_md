@@ -15,7 +15,7 @@ angular
   $scope.story = MyStory.getStoryObj($stateParams.id);
   $scope.mode = 'detail';
   $scope.role = Memorial.getRole();
-
+// console.log($scope.story);
   var _loadStoryComments = function(story) {
     $scope.commentsObject = {};
     $scope.users = User.getUsersObject();
