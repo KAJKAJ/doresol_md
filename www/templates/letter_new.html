@@ -48,49 +48,39 @@
   </h3>
 </md-toolbar>
 
-<md-content class="toolbar-padding">
+<md-content class="toolbar-padding" md-theme="green">
   <div ng-if="memorial.public||!role.isGuest">
-  	<!-- <form class="form" name="loginForm" ng-submit="login(loginForm)" novalidate style="padding: 20px;">
-      <md-text-float type='email' label="이메일" ng-model="loginUser.email" ng-required="true"> </md-text-float>
-      <p class="error-sm" ng-show="loginForm.email.$error.email">
-				유효한 이메일 주소가 아닙니다.
-			</p>
-      <md-text-float type='password' label="비밀번호" ng-model="loginUser.password" class="long" ng-required="true"> </md-text-float>
-		  <p class="error-sm" ng-show="loginForm.password.$error.minlength">
-        암호는 3글자 이상이여야 합니다.
-      </p>
-		  <p class="error-sm" ng-show="loginForm.email.$error.required && loginForm.password.$error.required && loginSubmitted">
-         이메일 주소와 암호를 넣어주세요.
-      </p>
-      <p class="error-sm" ng-show="loginErrors">{{loginErrors}}</p>
-			<md-button class="md-primary md-raised" md-theme="green" type="submit" ng-disabled="loginForm.$invalid">로그인</md-button>
-    </form> -->
 
-    <form name="newStoryForm" ng-submit="createNewStory(newStoryForm)" novalidate style="padding: 20px;" md-theme="green">
-      <!-- <textarea class="form-control" ng-model="newStory.text" placeholder="전하고 싶은 이야기.." rows="10" style="resize: none;" ng-required="true"/> -->
-      <md-text-float label="전하고 싶은 이야기.." ng-model="newStory.text" class="long"></md-text-float>
-      <br/>
+    <form name="newStoryForm" novalidate style="padding: 20px;" md-theme="green">
+      <textarea class="custom-textarea" ng-model="newStory.text" placeholder="전하고 싶은 이야기.." rows="10" style="resize: none;" ng-required="true"></textarea>
+      <br/><br/><br/>
+     
+      <div ng-show="fileUploading" layout="row" layout-sm="column" layout-align="space-around center">
+	      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+	    </div>
 
       <div ng-if="fileAdded">
       	<img ng-src="{{hostUrl + newStory.file.url}}" class="img-center img-responsive"> 
       	<br/>
       </div>
       
-      <!-- <div class="btn-group btn-group-justified">
-			  <div class="btn-group">
-			    <button type="button" ng-click="addPhoto('CAMERA')" class="btn btn-default" ng-disabled="fileUploading||uploading">사진 촬영</button>
+      <div layout="row" layout-align="space-around center" md-theme="default">
+			  <div>
+			  	<md-button class="md-raised md-primary" style="width:150px" ng-click="addPhoto('CAMERA')" ng-disabled="fileUploading||uploading">사진 촬영</md-button>
 			  </div>
-			  <div class="btn-group">
-			    <button type="button" ng-click="addPhoto('GALLERY')" class="btn btn-default" ng-disabled="fileUploading||uploading">갤러리 업로드</button>
+			  <div>
+			  	<md-button class="md-raised md-primary" style="width:150px" ng-click="addPhoto('GALLERY')" ng-disabled="fileUploading||uploading">갤러리 업로드</md-button>
 			  </div>
 			</div>
-			<br/>
+			<br/><br/><br/>
 
-      <div class="btn-group btn-group-justified">
-			  <div class="btn-group">
-			    <button type="submit" class="btn btn-success" ng-disabled="fileUploading||newStoryForm.$invalid||uploading">편지 보내기</button>
+			<div layout="row" layout-align="space-around center">
+			  <div>
+			  	<md-button class="md-raised md-primary" style="width:150px" ng-click="createNewStory(newStoryForm)" ng-disabled="fileUploading||newStoryForm.$invalid||uploading">
+			  		편지 보내기
+			  	</md-button>
 			  </div>
-			</div> -->
+			</div>
     </form>
   </div>
   <div ng-if="!memorial.public&&role.isGuest">

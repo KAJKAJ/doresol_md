@@ -64,7 +64,7 @@ angular.module('doresolApp')
       var element = document.getElementById(id);
       if(element)
         element.focus();
-    });
+    },100);
   }
 
   var scrollToTop = function(){

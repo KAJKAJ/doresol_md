@@ -18,6 +18,7 @@ angular
 
   //set focus
   if($state.params.id){
+    // console.log($state.params.id);
     Util.focus($state.params.id);
   }
 

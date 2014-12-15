@@ -7,17 +7,17 @@
 
 <md-content class="toolbar-padding">
   <div ng-if="memorial.public||!role.isGuest">
-    <md-card ng-repeat="story in storiesObject" ng-click="goToDetail(story.$id)" id="{{story.$id}}">
+    <md-card ng-repeat="story in storiesArray" ng-click="goToDetail(story)" id="{{story}}">
       <p>
-      	<!-- {{story.text|limitTo:100}} <span ng-if="story.text.length>100">...</span> -->
-      	{{story.text}}
+      	<!-- {{storiesObject[story].text|limitTo:100}} <span ng-if="storiesObject[story].text.length>100">...</span> -->
+      	{{storiesObject[story].text}}
       </p>
-      <img ng-src="{{hostUrl + story.file.url}}" class="img-center" ng-if="story.file"/>
+      <img ng-src="{{hostUrl + storiesObject[story].file.url}}" class="img-center" ng-if="storiesObject[story].file"/>
       <div class="author pull-left">
-        <span class="text-muted text-small"><em>{{users[story.ref_user].profile.name}}</em></span>
+        <span class="text-muted text-small"><em>{{users[storiesObject[story].ref_user].profile.name}} - {{storiesObject[story].fromNow}}</em></span>
       </div> 
       <div class="comment-count pull-right">
-        <i class="fa fa-comment"></i> {{commentSize(story.$id)}}
+        <i class="fa fa-comment"></i> {{commentSize(story)}}
       </div>
       <div class="clear"></div>
     </md-card>
