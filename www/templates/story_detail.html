@@ -1,38 +1,6 @@
 <!-- <fa-header-footer-layout>
-    <fa-modifier fa-size="[undefined, 54]" fa-translate="[0, 0, 1]">
-	    <fa-view>
-	      <fa-surface>
-    	    <header>
-				    <div class="navbar-container" style="height:34px;">
-				    	<span ui-sref="story" class="btn btn-default">
-				    		뒤로
-				    	</span>
-				    	
-				      &nbsp;&nbsp;&nbsp;
-				      <strong>{{story.text.headline| limitTo:20}}...</strong>
-				     
-				    </div>
-				  </header>
-        </fa-surface>
-	    </fa-view>
-    </fa-modifier>
-    
-		<fa-modifier fa-translate="[0, 0, 0]">
+    <fa-modifier fa-translate="[0, 0, 0]">
 		  <fa-scroll-view fa-pipe-from="eventHandler">
-				
-				<fa-view>
-				  <fa-modifier fa-size="[undefined, 50]" fa-align="[0.01,0]">
-						<fa-image-surface fa-pipe-to="eventHandler" fa-size="[50, 50]" fa-image-url="{{users[story.ref_user].profile.file.url}}"></fa-image-surface>
-						<fa-modifier fa-translate="[60,0,0]">
-							<fa-surface fa-pipe-to="eventHandler">{{users[story.ref_user].profile.name}}</fa-surface>
-						</fa-modifier>
-						<fa-modifier fa-translate="[60,20,0]">
-							<fa-surface fa-pipe-to="eventHandler">{{formatDate(story.created_at)}}</fa-surface>
-						</fa-modifier>
-					</fa-modifier>
-				</fa-view>
-
-				
 				<fa-view>
 					<fa-modifier fa-size="[undefined, getScrollContentHeight('scroll-content-1')]">
 						<fa-surface fa-pipe-to="eventHandler" >
@@ -82,25 +50,65 @@
 </md-toolbar>
 
 <md-content class="toolbar-padding">
-  <!-- <div ng-if="memorial.public||!role.isGuest">
-    <md-card ng-repeat="story in storiesObject" ng-click="goToDetail(story.$id)">
-     <img ng-src="{{hostUrl + story.file.url}}" class="img-center">
-     
-      <div class="author pull-left">
-        {{users[story.ref_user].profile.name}}
-      </div> 
-      <div class="comment-count pull-right">
-        <i class="fa fa-comment"></i> {{objectSize(story.comments)}}
-      </div>
-      <div class="clear"></div>
-     <p>
-       {{story.text.text|limitTo:100}} <span ng-if="story.text.text.length>100">...</span>
-     </p>
+  <div ng-if="memorial.public||!role.isGuest">
+    <md-card>
+    	<!-- author -->
+    	<md-list>
+        <md-item>
+          <md-item-content>
+            <div class="md-tile-left">
+                <img ng-src="{{users[story.ref_user].profile.file.url}}" class="thumbnail img-circle">
+            </div>
+            <div class="md-tile-content">
+              <h3>{{users[story.ref_user].profile.name}}</h3>
+              <h4><span class="text-muted text-small"><em>{{story.updatedAt}} 수정</em></span></h4>
+            </div>
+          </md-item-content>
+        </md-item>
+      </md-list>
+
+      <!-- detail -->
+      <img ng-src="{{hostUrl + story.file.url}}" class="img-center">
+     	<h2>{{story.text.headline}}</h2>
+      <p>
+        {{story.text.text}}</span>
+      </p>
+      <md-divider></md-divider>
+
+      <!-- comments -->
+      <md-list>
+        <md-item ng-repeat="(commentKey, comment) in commentsObject">
+          <md-item-content>
+            <div class="md-tile-left">
+                <img ng-src="{{users[comment.ref_user].profile.file.url}}" class="thumbnail img-circle">
+            </div>
+            <div class="md-tile-content">
+              <h4>
+              	{{users[comment.ref_user].profile.name}} - 
+              	<span class="text-muted text-small"><em>{{comment.fromNow}}</em></span>
+              	<i class="fa fa-times-circle red" ng-if="comment.ref_user == user.uid" ng-click="deleteComment(story.$id, commentKey)"></i>
+              </h4>
+              <p>{{comment.body}}</p>
+            </div>
+          </md-item-content>
+        </md-item>
+        <md-item>
+          <md-item-content md-theme="green">
+            <div class="md-tile-left">
+                <img ng-src="{{users[user.uid].profile.file.url}}" class="thumbnail img-circle">
+            </div>
+            <div class="md-tile-content">
+              <md-text-float label="댓글을 입력하세요.." ng-model="newComment.body" class="long"> </md-text-float>
+              <md-button type="submit" ng-click="addComment(story.$id,newComment)" class="md-primary md-raised"><i class="fa fa-comment"></i> 댓글 저장</md-button>
+            </div>
+          </md-item-content>
+        </md-item>
+      </md-list>
     </md-card>
   </div>
   <div ng-if="!memorial.public&&role.isGuest">
     <div ng-include="'templates/block.html'"></div>
-  </div> -->
+  </div>
 </md-content>
 
 

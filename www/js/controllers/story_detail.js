@@ -8,16 +8,16 @@
  */
 angular
 .module('doresolApp')
-.controller('StoryDetailCtrl', function($scope,ENV,$firebase,Composite, Memorial, User, $stateParams, MyStory){
+.controller('StoryDetailCtrl', function($scope,ENV,$firebase,Composite, Memorial, User, $stateParams, MyStory, Comment){
   $scope.hostUrl = ENV.HOST;
 
   $scope.user = User.getCurrentUser();
   $scope.story = MyStory.getStoryObj($stateParams.id);
   $scope.mode = 'detail';
   $scope.role = Memorial.getRole();
+  $scope.commentsObject = {};
 // console.log($scope.story);
   var _loadStoryComments = function(story) {
-    $scope.commentsObject = {};
     $scope.users = User.getUsersObject();
     $scope.newComment = {};
 
@@ -60,7 +60,7 @@ angular
   }
 
   $scope.deleteComment = function(storyKey, commentKey) {
-    delete $scope.commentsObject[storyKey][commentKey];
+    delete $scope.commentsObject[commentKey];
     Comment.removeCommentFromStoryInMemorial(ENV.MEMORIAL_KEY, storyKey, commentKey);
   }
 
