@@ -86,6 +86,21 @@ angular.module('doresolApp')
       templateUrl: 'templates/term.html',
       controller: 'LoginCtrl'
     })
+    .state('setting', {
+      url: '/setting',
+      templateUrl: 'templates/setting.html',
+      controller: 'SettingCtrl'
+    })
+    .state('change_passwd', {
+      url: '/change_passwd',
+      templateUrl: 'templates/change_passwd.html',
+      controller: 'SettingCtrl'
+    })
+    .state('change_name', {
+      url: '/change_name',
+      templateUrl: 'templates/change_name.html',
+      controller: 'SettingCtrl'
+    })
     .state('member', {
       url: '/member',
       templateUrl: 'templates/member.html',

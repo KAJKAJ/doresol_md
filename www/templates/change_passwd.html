@@ -1,0 +1,21 @@
+<div ng-controller="LoginCtrl" layout="column" layout-fill>
+  <md-toolbar md-theme="green">
+    <div class="md-toolbar-tools">
+    	<a ui-sref="setting"><i class="fa fa-2x fa-angle-left"></i></a>
+      <h3>
+        <span>비밀번호 변경</span>
+      </h3>
+    </div>
+  </md-toolbar>
+	<md-content md-theme="green">
+    <form class="form" name="changeForm" ng-submit="changePassword(changeForm)" novalidate style="padding: 20px;">
+      <md-text-float type='password' name="old_password" label="기존 비밀번호" ng-model="user.old_password" class="long" ng-required="true" firebase-error> </md-text-float>
+      <md-text-float type='password' name="new_password" label="새로운 비밀번호" ng-model="user.new_password" class="long" ng-required="true" firebase-error> </md-text-float>
+      <p class="error-sm" ng-show="message">{{message}}</p>
+			<md-button class="md-primary md-raised" md-theme="green" type="submit" ng-disabled="changeForm.$invalid">변경하기</md-button>
+    </form>
+	  <div ng-show="inProgress" layout="row" layout-sm="column" layout-align="space-around center">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+  </md-content>
+</div>

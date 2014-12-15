@@ -156,7 +156,7 @@ angular.module('doresolApp')
     }
 
     var changePassword = function(email, oldPassword, newPassword) {
-      // return auth.$changePassword(email, oldPassword, newPassword);
+      return authObj.$changePassword(email, oldPassword, newPassword);
     }
 
     var resetPassword = function(email) {

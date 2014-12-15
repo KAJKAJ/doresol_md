@@ -96,12 +96,12 @@ angular
           $scope.passwdErrors = "해당 이메일로 비밀번호 초기화가 발송되었습니다.";
         }, function(error) {
           $scope.inProgress = false;
-          switch(errorCode){
+          switch(error.code){
             case "INVALID_EMAIL":
               $scope.passwdErrors = '잘못된 형식의 이메일 주소입니다.';
               break;
             default:
-              $scope.passwdErrors = '잘못된 형식의 에러입니다.';
+              $scope.passwdErrors = '등록된 이메일이 없습니다.';
             break;
           }
         }

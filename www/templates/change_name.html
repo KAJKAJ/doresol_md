@@ -1,0 +1,20 @@
+<div ng-controller="LoginCtrl" layout="column" layout-fill>
+  <md-toolbar md-theme="green">
+    <div class="md-toolbar-tools">
+    	<a ui-sref="setting"><i class="fa fa-2x fa-angle-left"></i></a>
+      <h3>
+        <span>이름 변경</span>
+      </h3>
+    </div>
+  </md-toolbar>
+	<md-content md-theme="green">
+    <form class="form" name="changeForm" ng-submit="changeProfile(changeForm)" novalidate style="padding: 20px;">
+      <md-text-float type='text' name="name" label="사용자 이름" ng-model="user.profile.name" ng-required="true" firebase-error> </md-text-float>
+      <p class="error-sm" ng-show="message">{{message}}</p>
+			<md-button class="md-primary md-raised" md-theme="green" type="submit" ng-disabled="changeForm.$invalid">변경</md-button>
+    </form>
+	  <div ng-show="inProgress" layout="row" layout-sm="column" layout-align="space-around center">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+  </md-content>
+</div>
