@@ -121,7 +121,8 @@ angular
           $scope.newStoryForm.$setPristine({reload: true,notify: true});
         }
         $scope.uploading = false;
-        $state.go('letter');
+        // $state.go('letter.id',{id: value.key});
+        $state.go('letter')
       }, function(error){
         $scope.uploading = false;
         console.log(error);

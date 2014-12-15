@@ -51,7 +51,7 @@
 <md-content class="toolbar-padding" md-theme="green">
   <div ng-if="memorial.public||!role.isGuest">
 
-    <form name="newStoryForm" ng-submit="createNewStory(newStoryForm)" novalidate style="padding: 20px;" md-theme="green">
+    <form name="newStoryForm" novalidate style="padding: 20px;" md-theme="green">
       <textarea class="custom-textarea" ng-model="newStory.text" placeholder="전하고 싶은 이야기.." rows="10" style="resize: none;" ng-required="true"></textarea>
       <br/><br/><br/>
      
@@ -76,7 +76,7 @@
 
 			<div layout="row" layout-align="space-around center">
 			  <div>
-			  	<md-button class="md-raised md-primary" style="width:150px" type="submit" ng-disabled="fileUploading||newStoryForm.$invalid||uploading">
+			  	<md-button class="md-raised md-primary" style="width:150px" ng-click="createNewStory(newStoryForm)" ng-disabled="fileUploading||newStoryForm.$invalid||uploading">
 			  		편지 보내기
 			  	</md-button>
 			  </div>
