@@ -2,7 +2,7 @@
 
 angular
 .module('doresolApp')
-.controller('MainController', function($rootScope, $scope, Memorial){
+.controller('MainController', function($rootScope, $scope, Memorial, Story,MyStory,Letter){
 
   // User agent displayed in home page
   $scope.userAgent = navigator.userAgent;

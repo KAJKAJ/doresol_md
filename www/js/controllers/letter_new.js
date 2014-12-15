@@ -2,7 +2,7 @@
 
 angular
 .module('doresolApp')
-.controller('LetterNewCtrl', function($scope,$state,ENV,$firebase,Composite, Memorial, User, Util, $timeout,usSpinnerService){
+.controller('LetterNewCtrl', function($scope,$state,ENV,$firebase,Composite, Memorial, User, Util, $timeout, $mdDialog){
   $scope.hostUrl = ENV.HOST;
   $scope.fileUploading = false;
   $scope.fileAdded = false;
@@ -53,7 +53,6 @@ angular
     // Upload image to server
     var upload = function (imageURI) {
       $timeout(function(){
-        usSpinnerService.spin('spinner-1');
         $scope.fileUploading = true;
         $scope.fileAdded = false;
         delete $scope.newStory.file;
@@ -83,14 +82,12 @@ angular
               updated_at:moment().toString()
             };
             console.log($scope.newStory.file.url);
-            usSpinnerService.stop('spinner-1');
             $scope.fileUploading = false;
             $scope.fileAdded = true;
           });
         },
         function (e) {
           alert("사진 저장 실패");
-          usSpinnerService.stop('spinner-1');
           $scope.fileUploading = false;
         }, options
       );

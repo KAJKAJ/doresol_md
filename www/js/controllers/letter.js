@@ -2,7 +2,7 @@
 
 angular
 .module('doresolApp')
-.controller('LetterCtrl', function($scope,ENV, Memorial, User, Util, Letter, $state){
+.controller('LetterCtrl', function($scope,ENV, Memorial, User, Util, Letter, $state, $mdSidenav){
   $scope.hostUrl = ENV.HOST;
 
   $scope.memorial = Memorial.getCurrentMemorial();
@@ -16,35 +16,21 @@ angular
 
   $scope.role = Memorial.getRole();
 
-  $scope.scrollOption = {
-    // direction: 0,
-    paginated: true
-  };
-
-  // $scope.scrollContentHeight = {};
-
-  // $scope.$on('$viewContentLoaded', function(){
-  //   $famous.find('fa-scroll-view')[0].renderNode.sync.on('start', function(event) {
-  //     var scrollContent = angular.element('[id^=scroll-content]');
-
-  //     angular.forEach(scrollContent, function(value, key) {
-  //       $scope.scrollContentHeight[value.id] = value.clientHeight;
-  //     });
-
-  //   });
-  // });
-
-  // $scope.getScrollContentHeight = function(id) {
-  //   return $scope.scrollContentHeight[id];
-  // }
+  //set focus
+  if($state.params.id){
+    Util.focus($state.params.id);
+  }
 
   $scope.commentSize = function(storyId){
     return Util.objectSize($scope.commentsObject[storyId]);
   }
   
   $scope.goToDetail = function(storyKey) {
-    console.log(storyKey);
     $state.go('letter_detail', {id: storyKey});
   }
+
+  $scope.openLeftMenu = function() {
+    $mdSidenav('left').toggle();
+  };
 
 });

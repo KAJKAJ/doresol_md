@@ -100,11 +100,16 @@ angular.module('doresolApp')
     return commentsObject;
   }
 
+  var getStoryObj = function(story) {
+    return storiesObject[story];
+  }
+
   return {
     getStoryKeysArray: getStoryKeysArray,
     getStoriesArray: getStoriesArray,
     getStoriesObject: getStoriesObject,
-    getCommentsObject:getCommentsObject
+    getCommentsObject:getCommentsObject,
+    getStoryObj:getStoryObj
   };
   
 });

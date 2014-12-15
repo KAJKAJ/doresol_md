@@ -15,7 +15,7 @@
         <md-item>
           <md-item-content>
             <div class="md-tile-left">
-                <img ng-src="{{users[story.ref_user].profile.file.url}}" class="thumbnail img-circle">
+              <img ng-src="{{users[story.ref_user].profile.file.url}}" class="thumbnail img-circle">
             </div>
             <div class="md-tile-content">
               <h3>{{users[story.ref_user].profile.name}}</h3>
@@ -26,7 +26,7 @@
       </md-list>
 
       <!-- detail -->
-      <img ng-src="{{hostUrl + story.file.url}}" class="img-center">
+      <img ng-src="{{hostUrl + story.file.url}}" class="img-center" ng-if="story.file"/>
      	<h2>{{story.text.headline}}</h2>
       <p>
         {{story.text.text}}</span>
@@ -38,7 +38,7 @@
         <md-item ng-repeat="(commentKey, comment) in commentsObject">
           <md-item-content>
             <div class="md-tile-left">
-                <img ng-src="{{users[comment.ref_user].profile.file.url}}" class="thumbnail img-circle">
+              <img ng-src="{{users[comment.ref_user].profile.file.url}}" class="thumbnail img-circle">
             </div>
             <div class="md-tile-content">
               <h4>

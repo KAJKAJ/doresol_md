@@ -48,6 +48,12 @@ angular.module('doresolApp')
       controller: 'LetterCtrl',
       authenticate: true
     })
+    .state('letter.id', {
+      url: '/:id',
+      templateUrl: 'templates/letter.html',
+      controller: 'LetterCtrl',
+      authenticate: true
+    })
     .state('letter_detail', {
       url: '/letter_detail:id',
       templateUrl: 'templates/letter_detail.html',
