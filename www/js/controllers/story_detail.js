@@ -8,16 +8,19 @@
  */
 angular
 .module('doresolApp')
-.controller('StoryDetailCtrl', function($scope,ENV,$firebase,Composite, Memorial, User, $stateParams, MyStory){
+.controller('StoryDetailCtrl', function($scope,ENV,$firebase,Composite, Memorial, User, $stateParams, MyStory, Comment, $mdDialog, Util){
   $scope.hostUrl = ENV.HOST;
 
   $scope.user = User.getCurrentUser();
   $scope.story = MyStory.getStoryObj($stateParams.id);
   $scope.mode = 'detail';
   $scope.role = Memorial.getRole();
+  $scope.commentsObject = {};
+
+  //scroll to top
+  Util.scrollToTop();
 
   var _loadStoryComments = function(story) {
-    $scope.commentsObject = {};
     $scope.users = User.getUsersObject();
     $scope.newComment = {};
 
@@ -59,8 +62,22 @@ angular
     }
   }
 
+  $scope.deleteCommentConfirm = function(ev, storyKey, commentKey) {
+    var confirm = $mdDialog.confirm()
+      .title('댓글 삭제')
+      .content('댓글을 삭제하시겠습니까?')
+      .ok('삭제')
+      .cancel('취소')
+      .targetEvent(ev);
+    $mdDialog.show(confirm).then(function() {
+      $scope.deleteComment(storyKey, commentKey);
+    }, function() {
+      // $scope.alert = 'You decided to keep your debt.';
+    });
+  };
+
   $scope.deleteComment = function(storyKey, commentKey) {
-    delete $scope.commentsObject[storyKey][commentKey];
+    delete $scope.commentsObject[commentKey];
     Comment.removeCommentFromStoryInMemorial(ENV.MEMORIAL_KEY, storyKey, commentKey);
   }
 

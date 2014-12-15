@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('doresolApp')
-  .service('Util', function Util($window) {
+  .service('Util', function Util($window,$timeout) {
     
     var getUniqueId = function(){
     	return Date.now() + '-' + Math.random().toString(36).substring(2, 15);
@@ -59,6 +59,20 @@ angular.module('doresolApp')
     return size;
   }
 
+  var focus = function(id){
+    $timeout(function() {
+      var element = document.getElementById(id);
+      if(element)
+        element.focus();
+    });
+  }
+
+  var scrollToTop = function(){
+    $timeout(function(){
+      $window.scrollTo(0, 0);
+    });
+  }
+
   return {
   	getUniqueId:getUniqueId,
   	getFlowFileUniqueId:getFlowFileUniqueId,
@@ -68,6 +82,8 @@ angular.module('doresolApp')
     isMobile:isMobile,
     getRandomArbitrary:getRandomArbitrary,
     getRandomInt:getRandomInt,
-    objectSize:objectSize
+    objectSize:objectSize,
+    focus:focus,
+    scrollToTop:scrollToTop
   }
 });

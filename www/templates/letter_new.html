@@ -1,21 +1,4 @@
-<fa-header-footer-layout>
-    <fa-modifier fa-size="[undefined, 54]" fa-translate="[0, 0, 1]">
-	    <fa-view>
-	      <fa-surface>
-    	    <header>
-				    <div class="navbar-container" style="height:34px;">
-				    	<span ui-sref="letter" class="btn btn-default">
-				    		뒤로
-				    	</span>
-				    	
-				      &nbsp;&nbsp;&nbsp;
-				      <strong>편지 쓰기</strong>
-				    </div>
-				  </header>
-        </fa-surface>
-	    </fa-view>
-    </fa-modifier>
-    
+<!-- <fa-header-footer-layout>    
 		<fa-modifier fa-size="[undefined, undefined]" fa-translate="[0, 0, 0]">
 		  <fa-scroll-view fa-pipe-from="eventHandler">
 		  	<fa-view>
@@ -55,4 +38,69 @@
 			</fa-scroll-view>
 		</fa-modifier>
 
-</fa-header-footer-layout>
+</fa-header-footer-layout> -->
+<md-toolbar md-theme="green" class="toolbar">
+  <h3 class="md-toolbar-tools">
+    <span>
+    	<i class="fa fa-chevron-left" ui-sref="letter"></i> 
+    	<span> 편지 쓰기</span>
+    </span>
+  </h3>
+</md-toolbar>
+
+<md-content class="toolbar-padding">
+  <div ng-if="memorial.public||!role.isGuest">
+  	<!-- <form class="form" name="loginForm" ng-submit="login(loginForm)" novalidate style="padding: 20px;">
+      <md-text-float type='email' label="이메일" ng-model="loginUser.email" ng-required="true"> </md-text-float>
+      <p class="error-sm" ng-show="loginForm.email.$error.email">
+				유효한 이메일 주소가 아닙니다.
+			</p>
+      <md-text-float type='password' label="비밀번호" ng-model="loginUser.password" class="long" ng-required="true"> </md-text-float>
+		  <p class="error-sm" ng-show="loginForm.password.$error.minlength">
+        암호는 3글자 이상이여야 합니다.
+      </p>
+		  <p class="error-sm" ng-show="loginForm.email.$error.required && loginForm.password.$error.required && loginSubmitted">
+         이메일 주소와 암호를 넣어주세요.
+      </p>
+      <p class="error-sm" ng-show="loginErrors">{{loginErrors}}</p>
+			<md-button class="md-primary md-raised" md-theme="green" type="submit" ng-disabled="loginForm.$invalid">로그인</md-button>
+    </form> -->
+
+    <form name="newStoryForm" ng-submit="createNewStory(newStoryForm)" novalidate style="padding: 20px;" md-theme="green">
+      <!-- <textarea class="form-control" ng-model="newStory.text" placeholder="전하고 싶은 이야기.." rows="10" style="resize: none;" ng-required="true"/> -->
+      <md-text-float label="전하고 싶은 이야기.." ng-model="newStory.text" class="long"></md-text-float>
+      <br/>
+
+      <div ng-if="fileAdded">
+      	<img ng-src="{{hostUrl + newStory.file.url}}" class="img-center img-responsive"> 
+      	<br/>
+      </div>
+      
+      <!-- <div class="btn-group btn-group-justified">
+			  <div class="btn-group">
+			    <button type="button" ng-click="addPhoto('CAMERA')" class="btn btn-default" ng-disabled="fileUploading||uploading">사진 촬영</button>
+			  </div>
+			  <div class="btn-group">
+			    <button type="button" ng-click="addPhoto('GALLERY')" class="btn btn-default" ng-disabled="fileUploading||uploading">갤러리 업로드</button>
+			  </div>
+			</div>
+			<br/>
+
+      <div class="btn-group btn-group-justified">
+			  <div class="btn-group">
+			    <button type="submit" class="btn btn-success" ng-disabled="fileUploading||newStoryForm.$invalid||uploading">편지 보내기</button>
+			  </div>
+			</div> -->
+    </form>
+  </div>
+  <div ng-if="!memorial.public&&role.isGuest">
+    <div ng-include="'templates/block.html'"></div>
+  </div>
+</md-content>
+
+
+
+
+
+
+

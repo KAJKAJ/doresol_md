@@ -30,6 +30,12 @@ angular.module('doresolApp')
       controller: 'StoryCtrl',
       authenticate: true
     })
+    .state('story.id', {
+      url: '/:id',
+      templateUrl: 'templates/story.html',
+      controller: 'StoryCtrl',
+      authenticate: true
+    })
     .state('story_detail', {
       url: '/story_detail/:id',
       templateUrl: 'templates/story_detail.html',
@@ -38,6 +44,12 @@ angular.module('doresolApp')
     })
     .state('letter', {
       url: '/letter',
+      templateUrl: 'templates/letter.html',
+      controller: 'LetterCtrl',
+      authenticate: true
+    })
+    .state('letter.id', {
+      url: '/:id',
       templateUrl: 'templates/letter.html',
       controller: 'LetterCtrl',
       authenticate: true

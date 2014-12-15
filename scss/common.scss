@@ -46,8 +46,19 @@ input {
   left:0px;
 }
 
+.toolbar-bottm{
+  position:fixed;
+  z-index:1000;
+  bottom:0px;
+  left:0px;
+}
+
 .toolbar-padding{
   top:68px;
+}
+
+.toolbar-padding-bottom{
+  height:68px;
 }
 
 md-backdrop.md-sidenav-backdrop{
@@ -61,3 +72,32 @@ md-backdrop.md-opaque.md-default-theme{
   position:relative;
   float:right;
 }
+
+.text-muted {
+  color: #999999; 
+}
+
+.text-small {
+  font-size: 80%; 
+}
+
+.img-circle {
+  border-radius: 50%; 
+}
+
+.red{
+  color:red;
+}
+
+.green{
+  color:green;
+}
+
+.text-centered{
+  text-align: center;
+}
+
+.full-width{
+  width:100%;
+}
+
