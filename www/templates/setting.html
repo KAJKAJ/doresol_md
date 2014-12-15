@@ -1,0 +1,103 @@
+<div ng-include="'templates/sidemenu_left.html'" ng-controller="SideMenuLeftCtrl"></div>
+<md-toolbar md-theme="green" class="toolbar">
+  <h3 class="md-toolbar-tools">
+    <span><i class="fa fa-align-justify" ng-click="openLeftMenu()"></i> 설정</span>
+  </h3>
+</md-toolbar>
+
+<md-content class="toolbar-padding" style="padding: 10px;">
+  <md-item>
+    <md-item-content>
+      <div class="md-tile-left">
+        <img ng-src="{{hostUrl + '/' + user.profile.file.url}}" ng-click="showListBottomSheet($event)" class="face">
+      </div>
+      <div class="md-tile-content">
+        <h3>{{user.profile.name}}</h3>
+        <h4>{{user.email}}</h4>
+      </div>
+    </md-item-content>
+  </md-item>
+  <md-divider></md-divider>
+  <md-subheader>기본 정보</md-subheader>
+  <md-divider></md-divider>
+  <md-item>
+    <md-item-content>
+      <div class="md-tile-left">
+          이름 변경
+      </div>
+      <div class="md-tile-content" ui-sref="change_name">
+        <h4 class="right">{{user.profile.name}}&nbsp&nbsp<i class=" fa fa-angle-right"></i></h4>
+      </div>
+    </md-item-content>
+  </md-item>
+  <md-divider></md-divider>
+  <md-item>
+    <md-item-content>
+      <div class="right md-title-left">
+          비밀번호 변경
+      </div>
+      <div class="md-tile-content" ui-sref="change_passwd">
+        <h4 class="right">비밀번호 변경하러 가기&nbsp&nbsp<i  class="fa fa-angle-right"></i></h4>
+
+      </div>
+    </md-item-content>
+  </md-item>
+  <md-divider></md-divider>
+  <md-subheader>알림</md-subheader>
+  <md-divider></md-divider>
+  <md-item>
+    <md-item-content>
+      <div class="md-tile-left">
+        새 메시지 알림
+      </div>
+      <div class="md-tile-content">
+         <md-switch aria-label="Switch 1">알림</md-switch>
+      </div>
+    </md-item-content>
+  </md-item>
+  <md-item>
+    <md-item-content>
+      <div class="md-tile-left">
+        새 댓글 알림
+      </div>
+      <div class="md-tile-content">
+         <md-switch aria-label="Switch 1">알림</md-switch>
+      </div>
+    </md-item-content>
+  </md-item>
+  <md-divider></md-divider>
+  <md-subheader>연동</md-subheader>
+  <md-divider></md-divider>
+  <md-item>
+    <md-item-content>
+      <div class="md-tile-left">
+          facebook 계정 연동
+      </div>
+      <div class="md-tile-content">
+        <md-switch aria-label="Switch 1">연동되어 있음</md-switch>
+      </div>
+    </md-item-content>
+  </md-item>
+  <md-divider></md-divider>
+  <md-item>
+    <md-item-content>
+      <div class="md-tile-left">
+          카카오톡 계정 연동
+      </div>
+      <div class="inset md-tile-content">
+        <md-switch aria-label="Switch 1">연동되어 있음</md-switch>
+      </div>
+    </md-item-content>
+  </md-item>
+  <md-divider></md-divider>
+  <md-subheader>기타</md-subheader>
+  <md-divider></md-divider>
+  <section layout="row" layout-sm="column" layout-align="center center">
+    <br><br>
+  <md-button ng-click="logout()" class="md-raised">로그 아웃</md-button>
+  </section>
+
+  <div ng-if="!memorial.public&&role.isGuest">
+    <div ng-include="'templates/block.html'"></div>
+  </div>
+</md-content>

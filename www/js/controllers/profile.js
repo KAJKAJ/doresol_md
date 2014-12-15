@@ -8,7 +8,7 @@
  */
 angular
 .module('doresolApp')
-.controller('ProfileCtrl', function($scope,ENV,$firebase, Memorial, User){
+.controller('ProfileCtrl', function($scope,ENV,$firebase, Memorial, User, $mdSidenav){
   $scope.hostUrl = ENV.HOST;
 
   $scope.memorial = Memorial.getCurrentMemorial();
@@ -16,5 +16,9 @@ angular
 
   $scope.copyMemorial = {};
   $scope.role = Memorial.getRole();
+
+  $scope.openLeftMenu = function() {
+    $mdSidenav('left').toggle();
+  };
     
 });
