@@ -11,10 +11,10 @@
   	<md-item>
 	    <md-item-content>
 	      <div class="md-tile-left">
-	        <img ng-src="{{hostUrl + '/' + user.profile.file.url}}" class="face">
+	        <img ng-src="{{hostUrl + '/' + user.profile.file.url}}" class="thumbnail img-circle">
 	      </div>
 	      <div class="md-tile-content">
-	        <h3>멤버 추가하기</h3>
+	        <h3>멤버 초대하기</h3>
 	      </div>
 	    </md-item-content>
 	  </md-item>
@@ -27,7 +27,7 @@
 	  	<md-item ng-repeat="(uid, member) in waitings">
 		    <md-item-content>
 		      <div class="md-tile-left">
-		        <img ng-src="{{users[uid].profile.file.url}}" class="face">
+		        <img ng-src="{{users[uid].profile.file.url}}" class="thumbnail img-circle">
 		      </div>
 		      <div class="md-tile-content">
 		        <h4>{{users[member.uid].profile.name}}</h4>
@@ -47,7 +47,7 @@
 	  	<md-item ng-repeat="(uid, member) in members">
 		    <md-item-content>
 		      <div class="md-tile-left">
-		        <img ng-src="{{users[uid].profile.file.url}}" class="face">
+		        <img ng-src="{{users[uid].profile.file.url}}" class="thumbnail img-circle">
 		      </div>
 		      <div class="md-tile-content">
 		        <h4>{{users[member.uid].profile.name}}</h4>
