@@ -8,7 +8,7 @@
  */
 angular
 .module('doresolApp')
-.controller('StoryDetailCtrl', function($scope,ENV,$firebase,Composite, Memorial, User, $stateParams, MyStory, Comment){
+.controller('StoryDetailCtrl', function($scope,ENV,$firebase,Composite, Memorial, User, $stateParams, MyStory, Comment, $mdDialog, Util){
   $scope.hostUrl = ENV.HOST;
 
   $scope.user = User.getCurrentUser();
@@ -16,7 +16,10 @@ angular
   $scope.mode = 'detail';
   $scope.role = Memorial.getRole();
   $scope.commentsObject = {};
-// console.log($scope.story);
+
+  //scroll to top
+  Util.scrollToTop();
+
   var _loadStoryComments = function(story) {
     $scope.users = User.getUsersObject();
     $scope.newComment = {};
@@ -58,6 +61,20 @@ angular
       $scope.newComment = {}; 
     }
   }
+
+  $scope.deleteCommentConfirm = function(ev, storyKey, commentKey) {
+    var confirm = $mdDialog.confirm()
+      .title('댓글 삭제')
+      .content('댓글을 삭제하시겠습니까?')
+      .ok('삭제')
+      .cancel('취소')
+      .targetEvent(ev);
+    $mdDialog.show(confirm).then(function() {
+      $scope.deleteComment(storyKey, commentKey);
+    }, function() {
+      // $scope.alert = 'You decided to keep your debt.';
+    });
+  };
 
   $scope.deleteComment = function(storyKey, commentKey) {
     delete $scope.commentsObject[commentKey];

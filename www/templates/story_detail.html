@@ -86,7 +86,7 @@
               <h4>
               	{{users[comment.ref_user].profile.name}} - 
               	<span class="text-muted text-small"><em>{{comment.fromNow}}</em></span>
-              	<i class="fa fa-times-circle red" ng-if="comment.ref_user == user.uid" ng-click="deleteComment(story.$id, commentKey)"></i>
+              	<i class="fa fa-times-circle red" ng-if="comment.ref_user == user.uid" ng-click="deleteCommentConfirm($event,story.$id, commentKey)"></i>
               </h4>
               <p>{{comment.body}}</p>
             </div>

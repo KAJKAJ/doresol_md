@@ -67,6 +67,12 @@ angular.module('doresolApp')
     });
   }
 
+  var scrollToTop = function(){
+    $timeout(function(){
+      $window.scrollTo(0, 0);
+    });
+  }
+
   return {
   	getUniqueId:getUniqueId,
   	getFlowFileUniqueId:getFlowFileUniqueId,
@@ -77,6 +83,7 @@ angular.module('doresolApp')
     getRandomArbitrary:getRandomArbitrary,
     getRandomInt:getRandomInt,
     objectSize:objectSize,
-    focus:focus
+    focus:focus,
+    scrollToTop:scrollToTop
   }
 });
