@@ -12,6 +12,7 @@ angular
   $scope.items = [
     { name: '직접 찍기', icon: 'share' },
     { name: '앨범에서 가져오기', icon: 'upload' },
+    { name: '취소', icon: 'cancel' }
   ];
   $scope.listItemClick = function($index) {
     var clickedItem = $scope.items[$index];
