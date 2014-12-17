@@ -2,7 +2,7 @@
 
 angular
 .module('doresolApp')
-.controller('MainCtrl', function($rootScope, $scope, Memorial, ENV, Story, MyStory, Letter, CordovaService, $firebase){
+.controller('MainCtrl', function($rootScope, $scope, Memorial, ENV, Story, MyStory, Letter, CordovaService, $firebase, $mdDialog){
 
   // // User agent displayed in home page
   // $scope.userAgent = navigator.userAgent;
@@ -25,11 +25,14 @@ angular
     // Cordova is ready
     var platform = device.platform;
     var appVersionEndPoint = ENV.FIREBASE_URI + '/memorials/' + ENV.MEMORIAL_KEY + '/app_version/';
+    var appURLEndPoint = ENV.FIREBASE_URI + '/memorials/' + ENV.MEMORIAL_KEY + '/market_url/';
 
     if(platform === 'Android' || platform === 'android'){
       appVersionEndPoint += 'android';
+      appURLEndPoint += 'android';
     }else if(platform === 'iOS' || platform === 'ios'){
       appVersionEndPoint += 'ios';
+      appURLEndPoint += 'ios';
     }
 
     var appVersionRef = new Firebase(appVersionEndPoint);
@@ -56,17 +59,38 @@ angular
       }
 
       //check if this version is old
+      var update = false;
+      if(ENV.APP_VERSION.MAJOR < value.major){
+        update = true;
+      }else if(ENV.APP_VERSION.MAJOR == value.major && ENV.APP_VERSION.MINOR < value.minor){
+        update = true;
+      }else if(ENV.APP_VERSION.MAJOR == value.major && ENV.APP_VERSION.MINOR == value.minor && ENV.APP_VERSION.DETAIL < value.detail){
+        update = true;
+      }
 
+      // alert(update);
+      if(update){
+        var confirm = $mdDialog.confirm()
+          .title('업데이트')
+          .content('최신버전이 있습니다. 최신버전을 이용하시지 않을 경우에는 기능에 제한이 있을 수 있습니다. 업데이트 하시겠습니까?')
+          .ok('업데이트')
+          .cancel('취소');
+
+        $mdDialog.show(confirm).then(function() {
+          var appURLRef = new Firebase(appURLEndPoint);
+          var appURL = $firebase(appURLRef).$asObject();
+          appURL.$loaded().then(function(value){
+            if(value.$value){
+              window.open(value.$value, '_system');  
+            }else{
+              alert("마켓 등록 대기 중입니다.");
+            }
+          });
+        }, function() {
+          // $scope.alert = 'You decided to keep your debt.';
+        });
+      }
+    });
   });
 
-  
-
-  });
-
-  // if(!$scope.memorial.app_version){
-  //   console.log('he');
-  // }
-  // console.log(appVersionRef);
-
-  // console.log($scope.memorial);
 });
