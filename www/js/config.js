@@ -7,7 +7,12 @@
 .constant("ENV", {
 	"FIREBASE_URI": "https://doresol-dev.firebaseio.com/",
 	"HOST": "http://doresol.net:8000",
-	"MEMORIAL_KEY": "-J_yaUS2gsgyLbDtgzQA"
+	"MEMORIAL_KEY": "-J_yaUS2gsgyLbDtgzQA",
+	"APP_VERSION": {
+		"MAJOR": 1,
+		"MINOR": 0,
+		"DETAIL": 0
+	}
 })
 
 ;
