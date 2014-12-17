@@ -20,9 +20,10 @@ angular
 
     var _afterLogin = function(userId){
       // console.log(userId);
-      Memorial.clearMyMemorial();
+      // Memorial.clearMyMemorial();
       // //set current memorial
-      Memorial.setCurrentMemorial(ENV.MEMORIAL_KEY);
+      // Memorial.setCurrentMemorial(ENV.MEMORIAL_KEY);
+      Memorial.setRoleForMemorial();
       $state.go("story");
     }
 

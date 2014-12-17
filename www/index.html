@@ -78,13 +78,14 @@
     <script src="modules/auth/auth.service.js"></script>   
     <script src="modules/comment/comment.service.js"></script>   
     <script src="modules/composite/composite.service.js"></script>   
+    <script src="modules/cordova/fs_cordova.js"></script>   
     <script src="modules/firebase-error/firebase-error.directive.js"></script>   
     <script src="modules/member/member.service.js"></script>   
     <script src="modules/memorial/memorial.service.js"></script>   
+    <script src="modules/user/user.service.js"></script>   
     <script src="modules/story/letter.service.js"></script>   
     <script src="modules/story/mystory.service.js"></script>   
     <script src="modules/story/story.service.js"></script>   
-    <script src="modules/user/user.service.js"></script>   
     <script src="modules/util/util.service.js"></script>   
     <!-- endinject -->
   </head>
@@ -92,6 +93,6 @@
   <body ng-app="doresolApp">
     <!-- The nav bar that will be updated as we navigate -->
     <!-- <section id="uiview" ui-view autoscroll="true"></section> -->
-    <section id="uiview" ui-view></section>
+    <section id="uiview" ui-view ng-controller="MainCtrl"></section>
   </body>
 </html>
