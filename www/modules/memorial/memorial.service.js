@@ -16,58 +16,60 @@
   	isGuest:false
   }
   
+  var addMemberForMemorial = function(user){
+		// console.log(memorial);
+		// console.log(user);
+		if(user && user.uid !== currentMemorial.ref_user ) {
+	    if(currentMemorial.public){
+  			var userMemberRef = new Firebase(ENV.FIREBASE_URI + '/users/' + user.uid + '/memorials/members');
+		    $firebase(userMemberRef).$set(memorialId, true);
+		    
+		    var memorialMemberRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + memorialId + '/members');
+				$firebase(memorialMemberRef).$set(user.uid, true);
+
+				setMyRole('member');
+  		}else{
+  			var userWaitingRef = new Firebase(ENV.FIREBASE_URI + '/users/' + user.uid + '/memorials/waitings');
+		    $firebase(userWaitingRef).$set(memorialId, true);
+
+		    var memorialWaitingRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + memorialId + '/waitings');
+				$firebase(memorialWaitingRef).$set(user.uid, true);
+
+  			setMyRole('guest');
+  		}
+	  }else{
+	  	setMyRole('guest');
+	  }
+	}
+
+	var setRoleForMemorial = function(){
+		var user = User.getCurrentUser();
+		if(user && user.uid === currentMemorial.ref_user ) {
+	    setMyRole('owner');
+	  } else {
+	    // no member 
+	    if(currentMemorial.members === undefined) {
+	    	addMemberForMemorial(user);
+	      // setMyRole('guest');
+	    } else {
+	      // member
+	      if(user && currentMemorial.members[user.uid]) {
+	        setMyRole('member');
+	      } else {
+	      	addMemberForMemorial(user);
+	        // setMyRole('guest');
+	      }
+	    }
+	  }
+
+    leader = User.findById(currentMemorial.ref_user);
+    User.setUsersObject(currentMemorial.ref_user);
+
+    // console.log(role);
+	}
+
   var setCurrentMemorial = function(memorialId){
   	// console.log('setCurrentMemorial');
-  	var addMemberForMemorial = function(user){
-  		// console.log(memorial);
-  		// console.log(user);
-  		if(user.uid !== currentMemorial.ref_user ) {
-		    if(currentMemorial.public){
-	  			var userMemberRef = new Firebase(ENV.FIREBASE_URI + '/users/' + user.uid + '/memorials/members');
-			    $firebase(userMemberRef).$set(memorialId, true);
-			    
-			    var memorialMemberRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + memorialId + '/members');
-					$firebase(memorialMemberRef).$set(user.uid, true);
-
-					setMyRole('member');
-	  		}else{
-	  			var userWaitingRef = new Firebase(ENV.FIREBASE_URI + '/users/' + user.uid + '/memorials/waitings');
-			    $firebase(userWaitingRef).$set(memorialId, true);
-
-			    var memorialWaitingRef = new Firebase(ENV.FIREBASE_URI + '/memorials/' + memorialId + '/waitings');
-					$firebase(memorialWaitingRef).$set(user.uid, true);
-
-	  			setMyRole('guest');
-	  		}
-		  }
-  	}
-
-  	var setRoleForMemorial = function(){
-  		var user = User.getCurrentUser();
-  		if(user && user.uid === currentMemorial.ref_user ) {
-		    setMyRole('owner');
-		  } else {
-		    // no member 
-		    if(currentMemorial.members === undefined) {
-		    	addMemberForMemorial(user);
-		      // setMyRole('guest');
-		    } else {
-		      // member
-		      if(user && currentMemorial.members[user.uid]) {
-		        setMyRole('member');
-		      } else {
-		      	addMemberForMemorial(user);
-		        // setMyRole('guest');
-		      }
-		    }
-		  }
-
-      leader = User.findById(currentMemorial.ref_user);
-	    User.setUsersObject(currentMemorial.ref_user);
-
-	    // console.log(role);
-  	}
-
   	if(currentMemorial == null) {
   		currentMemorial = findById(memorialId);
   		
@@ -305,7 +307,9 @@
 		removeWaiting:removeWaiting,
 
 		// role related
+		setRoleForMemorial:setRoleForMemorial,
 		getRole : getRole
+
 	};
 	
 });

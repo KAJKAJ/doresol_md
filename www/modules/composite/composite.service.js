@@ -3,63 +3,63 @@
  angular.module('doresolApp')
   .factory('Composite', function Composite($q,Memorial,User,ENV,$firebase,Story,Comment,Util,$timeout) {
 
-  var setMyMemorials = function(userId){
-    var dfd = $q.defer();
+  // var setMyMemorials = function(userId){
+  //   var dfd = $q.defer();
 
-    //mywatingmemorial
-    // Memorial.fetchMyWaitingMemorials(userId);
+  //   //mywatingmemorial
+  //   // Memorial.fetchMyWaitingMemorials(userId);
     
-    var userRef = new Firebase(ENV.FIREBASE_URI + '/users');
-    var memorialsRef = new Firebase(ENV.FIREBASE_URI + '/memorials');
+  //   var userRef = new Firebase(ENV.FIREBASE_URI + '/users');
+  //   var memorialsRef = new Firebase(ENV.FIREBASE_URI + '/memorials');
     
-    // my own memorials
-    var myMemorialRef =  userRef.child(userId+'/memorials/own');
-    var _myMemorials = $firebase(myMemorialRef).$asArray();
+  //   // my own memorials
+  //   var myMemorialRef =  userRef.child(userId+'/memorials/own');
+  //   var _myMemorials = $firebase(myMemorialRef).$asArray();
 
-    _myMemorials.$watch(function(event){
-      switch(event.event){
-        case "child_removed":
-          Memorial.removeMyMemorial(event.key);
-        break;
-        case "child_added":
-          var childRef = memorialsRef.child(event.key);
-          var child = $firebase(childRef).$asObject();
-          child.$loaded().then(function(value){
-            if(value.ref_user == userId){
-              value.own = true;
-            }
-            Memorial.addMyMemorial(event.key,value);
-          });
-        break;
-      }
-    });
+  //   _myMemorials.$watch(function(event){
+  //     switch(event.event){
+  //       case "child_removed":
+  //         Memorial.removeMyMemorial(event.key);
+  //       break;
+  //       case "child_added":
+  //         var childRef = memorialsRef.child(event.key);
+  //         var child = $firebase(childRef).$asObject();
+  //         child.$loaded().then(function(value){
+  //           if(value.ref_user == userId){
+  //             value.own = true;
+  //           }
+  //           Memorial.addMyMemorial(event.key,value);
+  //         });
+  //       break;
+  //     }
+  //   });
 
-    // my member memorials
-    var myMemberMemorialRef =  userRef.child(userId+'/memorials/members');
-    var _myMemberMemorials = $firebase(myMemberMemorialRef).$asArray();
+  //   // my member memorials
+  //   var myMemberMemorialRef =  userRef.child(userId+'/memorials/members');
+  //   var _myMemberMemorials = $firebase(myMemberMemorialRef).$asArray();
 
-    _myMemberMemorials.$watch(function(event){
-      switch(event.event){
-        case "child_removed":
-          Memorial.removeMyMemorial(event.key);
-        break;
-        case "child_added":
-          var childRef = memorialsRef.child(event.key);
-          var child = $firebase(childRef).$asObject();
-          child.$loaded().then(function(value){
-            value.own = false;
-            Memorial.addMyMemorial(event.key,value);
-          });
-        break;
-      }
-    });
+  //   _myMemberMemorials.$watch(function(event){
+  //     switch(event.event){
+  //       case "child_removed":
+  //         Memorial.removeMyMemorial(event.key);
+  //       break;
+  //       case "child_added":
+  //         var childRef = memorialsRef.child(event.key);
+  //         var child = $firebase(childRef).$asObject();
+  //         child.$loaded().then(function(value){
+  //           value.own = false;
+  //           Memorial.addMyMemorial(event.key,value);
+  //         });
+  //       break;
+  //     }
+  //   });
 
-    //set current memorial
-    Memorial.setCurrentMemorial(ENV.MEMORIAL_KEY);
+  //   //set current memorial
+  //   Memorial.setCurrentMemorial(ENV.MEMORIAL_KEY);
     
-    dfd.resolve(true);
-    return dfd.promise;
-  };
+  //   dfd.resolve(true);
+  //   return dfd.promise;
+  // };
 
   var createMemorial = function(memorial) {
     var _create_memorial = function(memorial) {
@@ -270,7 +270,7 @@
 
   return {
 		createMemorial:createMemorial,
-    setMyMemorials:setMyMemorials,
+    // setMyMemorials:setMyMemorials,
     changeMemorialProfileImage:changeMemorialProfileImage,
 
     // story 

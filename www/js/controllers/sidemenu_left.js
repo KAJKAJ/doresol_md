@@ -6,10 +6,11 @@ angular.module('doresolApp')
     $scope.user = User.getCurrentUser();
     
     $scope.logout = function() {
+      // console.log('logout');
       Auth.logout();
       $scope.user = null;
       User.setCurrentUser();
-      $location.path('/login');
+      $location.path('/intro');
     }
 
     $scope.isActive = function(route) {
