@@ -26,6 +26,8 @@ angular
     $mdSidenav('left').toggle();
   };
 
+  $scope.actions = ['직접 찍기', '앨범에서 찾기'];
+  
 	$scope.password = {};
   $scope.changePassword = function(form) {
     $scope.inProgress = true;
@@ -79,27 +81,15 @@ angular
     $state.go('intro');
   }
 
-  $scope.listItemClick = function($index) {
-    var clickedItem = $scope.items[$index];
-    $mdBottomSheet.hide(clickedItem);
-  };
-
-  $scope.showListBottomSheet = function($event) {
-    $scope.alert = '';
-    $mdBottomSheet.show({
-      templateUrl: 'templates/actionset-change-image.html',
-      controller: 'SettingCtrl',
-      targetEvent: $event
-    }).then(function(clickedItem) {
-      $scope.alert = clickedItem.name + ' clicked!';
-    });
-  };
-
   var getFileUniqueId = function(file){
     return $scope.user.uid.replace(/[^\.0-9a-zA-Z_-]/img, '') + '-' + Util.getUniqueId();
   }
 
   $scope.changeProfileImage = function(type){
+
+    // $mdBottomSheet.hide();
+    console.log('SettingCtrl');
+    
     var sourceType = null;
 
     switch(type){

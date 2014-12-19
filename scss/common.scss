@@ -274,3 +274,25 @@ md-backdrop.md-opaque.md-default-theme{
   to { transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
 }
 
+.zoom.ng-enter {
+  transition:0.5s linear all;
+  position:relative;
+  opacity:0;
+}
+
+.zoom.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.show-hide-animation {
+  transition:0.3s linear all;
+}
+.show-hide-animation.ng-hide {
+  opacity:0;
+}
+
+.overlay {
+  background-color: #EEEEEE;
+  position: absolute;
+  z-index:100;
+}

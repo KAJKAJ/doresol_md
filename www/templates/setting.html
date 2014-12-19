@@ -5,18 +5,28 @@
   </h3>
 </md-toolbar>
 
-<md-content class="toolbar-padding" style="padding: 10px;">
+<md-content md-theme="green" class="toolbar-padding" style="padding: 10px;">
   <md-item>
     <md-item-content>
-      <div class="md-tile-left">
-        <img ng-src="{{hostUrl + user.profile.file.url}}" ng-click="showListBottomSheet($event)" class="thumbnail img-circle">
+      <div ng-click="show=!show" class="md-tile-left">
+        <img style="position:relative" ng-src="{{hostUrl + user.profile.file.url}}" class="thumbnail img-circle">
       </div>
+      <i style="position: absolute; bottom: 1em; left:0.9em;" class="fa fa-camera fa-inverse"></i>
       <div class="md-tile-content">
         <h3>{{user.profile.name}}</h3>
         <h4>{{user.email}}</h4>
       </div>
     </md-item-content>
   </md-item>
+
+  <div ng-show='show' class="float show-hide-animation">
+    <div layout="row" layout-align="space-around center">
+      <md-button class="md-raised" ng-click="changeProfileImage('CAMERA')"><i class="fa fa-camera"></i>&nbsp;직접 찍기</md-button>
+      <md-button class="md-raised" ng-click="changeProfileImage('GALLERY')"><i class="fa fa-picture-o"></i>&nbsp;앨범에서 가져오기</md-button>
+    </div>
+    <br/>
+  </div>
+
   <md-divider></md-divider>
   <md-subheader>기본 정보</md-subheader>
   <md-divider></md-divider>
@@ -38,7 +48,6 @@
       </div>
       <div class="md-tile-content" ui-sref="change_passwd">
         <h4 class="right">비밀번호 변경하러 가기&nbsp&nbsp<i  class="fa fa-angle-right"></i></h4>
-
       </div>
     </md-item-content>
   </md-item>
