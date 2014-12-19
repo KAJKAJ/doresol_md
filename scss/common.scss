@@ -46,7 +46,7 @@ input {
   left:0px;
 }
 
-.toolbar-bottm{
+.toolbar-bottom{
   position:fixed;
   z-index:1000;
   bottom:0px;
@@ -295,4 +295,12 @@ md-backdrop.md-opaque.md-default-theme{
   background-color: #EEEEEE;
   position: absolute;
   z-index:100;
+}
+
+/* toolbar */
+.toolbar-color-1{
+  background-color: #42bd41 !important;
+}
+.toolbar-color-2{
+  background-color: #72d572 !important;
 }
