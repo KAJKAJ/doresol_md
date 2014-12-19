@@ -18,7 +18,6 @@ angular
 
   Memorial.setCurrentMemorial(ENV.MEMORIAL_KEY);
   $scope.memorial = Memorial.getCurrentMemorial();
-
   // console.log($scope.memorial);
   
   CordovaService.ready.then(function() {

@@ -9,3 +9,10 @@
 md-item-content.active{
 	color:#72d572;
 }
+
+md-backdrop.md-sidenav-backdrop{
+  z-index:1500;
+}
+md-backdrop.md-opaque.md-default-theme{
+  position:fixed;
+}

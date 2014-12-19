@@ -14,8 +14,26 @@ var browserSync = require('browser-sync');
 
 gulp.task('default', ['dev']);
 
-gulp.task('dev', ['clean','sass','config_dev','index']);
-gulp.task('beta', ['clean','sass','config_beta','index']);
+gulp.task('dev', ['index-dev']);
+gulp.task('beta', ['index-beta']);
+
+gulp.task('index-dev', ['sass','config_dev'], function(){
+  return gulp.src('./www/index.html')
+    .pipe(inject(gulp.src(bowerFiles(), {read: false}),{ name: 'bower', relative: true}))
+    .pipe(inject(gulp.src('./www/modules/**/*.js', {read: false}), {name:'components', relative: true}))
+    .pipe(inject(gulp.src('./www/js/**/*.js', {read: false}), {relative: true}))
+    .pipe(inject(gulp.src('./www/css/**/*.css', {read: false}), {relative: true}))
+    .pipe(gulp.dest('./www'));
+});
+
+gulp.task('index-beta', ['sass','config_beta'], function(){
+  return gulp.src('./www/index.html')
+    .pipe(inject(gulp.src(bowerFiles(), {read: false}),{ name: 'bower', relative: true}))
+    .pipe(inject(gulp.src('./www/modules/**/*.js', {read: false}), {name:'components', relative: true}))
+    .pipe(inject(gulp.src('./www/js/**/*.js', {read: false}), {relative: true}))
+    .pipe(inject(gulp.src('./www/css/**/*.css', {read: false}), {relative: true}))
+    .pipe(gulp.dest('./www'));
+});
 
 ////////////////////
 // serve
@@ -52,7 +70,7 @@ gulp.task('browser-sync', function() {
 
 });
 
-gulp.task('sass', function(done) {
+gulp.task('sass', ['clean'], function(done) {
   // gulp.src('./scss/ionic.app.scss')
   //   .pipe(sass())
   //   .pipe(gulp.dest('./www/css/'))
