@@ -16,6 +16,7 @@ angular
   //   $scope.inviteUrl = newValue;
   // });
 
+
   $scope.$watch( function(){ return Memorial.getLeader();}, function(newValue){
     $scope.leader = newValue;
   });
@@ -32,6 +33,14 @@ angular
   $scope.waitings = Member.getWaitings();
   
   $scope.role = Memorial.getRole();
+
+  $scope.gotoAppStore = function(store) {
+    if(store === 'ios') {
+      window.open($scope.memorial.market_url.ios, '_system');  
+    } else if(store === 'android') {
+      window.open($scope.memorial.market_url.android, '_system');  
+    }
+  }
  
   // remove member from member list
     $scope.removeMember = function(event, uid, logout) {

@@ -106,5 +106,12 @@ angular.module('doresolApp')
       templateUrl: 'templates/member.html',
       controller: 'MemberCtrl',
       authenticate: true
+    })
+    .state('invite', {
+      url: '/invite',
+      templateUrl: 'templates/invite.html',
+      controller: 'MemberCtrl',
+      authenticate: true
     });
+
 });
