@@ -1,5 +1,5 @@
 <div ng-include="'templates/sidemenu_left.html'" ng-controller="SideMenuLeftCtrl"></div>
-<md-toolbar class="toolbar toolbar-color-1">
+<md-toolbar md-theme="green" class="toolbar">
   <h3 class="md-toolbar-tools">
     <span><i class="fa fa-align-justify" ng-click="openLeftMenu()"></i> 프로필</span>
   </h3>
@@ -26,7 +26,7 @@
           </div>
           <div class="md-tile-content">
             <h3>이야기 끝나는 날</h3>
-            <h4>{{memorial.dateOfDeath}}</h4>
+            <h3>{{memorial.dateOfDeath}}</h3>
           </div>
         </md-item-content>
         <md-item-content>

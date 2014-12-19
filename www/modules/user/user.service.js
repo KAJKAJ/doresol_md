@@ -49,7 +49,7 @@ angular.module('doresolApp')
       name:newUser.email,
       file: {
         location: 'local',
-        url: 'assets/images/user_32.png',
+        url: '/assets/images/user_32.png',
         updated_at: moment().toString()
       }
     }
@@ -69,7 +69,6 @@ angular.module('doresolApp')
     });
 
     return dfd.promise;
-
   }
 
   var update = function(userId, data) {
@@ -110,8 +109,15 @@ angular.module('doresolApp')
         tempUser.profile = value.profile;
         // angular.copy(value,tempUser);
 
-        if(tempUser.profile.file.location === 'local'){
-          tempUser.profile.file.url = ENV.HOST + "/" + tempUser.profile.file.url;
+        if(tempUser.profile.file.location === 'local') {
+          var urlPrefix = '';
+          console.log(tempUser.profile.file.url.substring(0,1));
+          if(tempUser.profile.file.url.substring(0,1) !== '/') {
+            urlPrefix = '/';
+          }
+          tempUser.profile.file.url = ENV.HOST + urlPrefix + tempUser.profile.file.url;
+        } else {
+          tempUser.profile.file.url = tempUser.profile.file.url;
         }
         // value.profile = getUserProfile(value);      
         usersObject[tempUser.uid] = tempUser;
