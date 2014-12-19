@@ -1,0 +1,27 @@
+/* toolbar */
+.toolbar{
+  position:fixed;
+  z-index:1000;
+  top:0px;
+  left:0px;
+}
+
+.toolbar-bottom{
+  position:fixed;
+  z-index:1000;
+  bottom:0px;
+  left:0px;
+}
+
+.toolbar-padding{
+  top:68px;
+}
+
+.toolbar-padding-bottom{
+  height:68px;
+}
+
+.toolbar-mini{
+  height:40px;
+  min-height:40px;
+}
