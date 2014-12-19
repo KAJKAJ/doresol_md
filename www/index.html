@@ -54,8 +54,6 @@
     <script src="lib/angular-material/angular-material.js"></script>
     <!-- endinject -->
     
-    
-
     <!-- inject:js -->
     <script src="js/app.js"></script>
     <script src="js/config.js"></script>
@@ -75,8 +73,8 @@
     <!-- endinject -->
 
     <!-- components:js -->   
-    <script src="modules/comment/comment.service.js"></script>   
     <script src="modules/auth/auth.service.js"></script>   
+    <script src="modules/comment/comment.service.js"></script>   
     <script src="modules/composite/composite.service.js"></script>   
     <script src="modules/cordova/fs_cordova.js"></script>   
     <script src="modules/firebase-error/firebase-error.directive.js"></script>   
@@ -93,6 +91,6 @@
   <body ng-app="doresolApp">
     <!-- The nav bar that will be updated as we navigate -->
     <!-- <section id="uiview" ui-view autoscroll="true"></section> -->
-    <section id="uiview" ui-view ng-controller="MainCtrl"></section>
+    <section id="uiview" ui-view ng-controller="MainCtrl" class="page {{pageClass}}" ng-view></section>
   </body>
 </html>

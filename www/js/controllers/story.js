@@ -9,6 +9,7 @@
 angular
 .module('doresolApp')
 .controller('StoryCtrl', function($scope,ENV,$state, Memorial, User, MyStory, Util, $mdSidenav){
+  $scope.pageClass = 'page-login';
   $scope.hostUrl = ENV.HOST;
 
   $scope.memorial = Memorial.getCurrentMemorial();

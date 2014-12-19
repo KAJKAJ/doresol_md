@@ -3,6 +3,11 @@
 angular
 .module('doresolApp')
 .controller('LoginCtrl', function ($scope, Auth, User, $window,$state,Memorial,Composite, ENV) {
+  if($state.current.name === 'intro'){
+    $scope.pageClass = 'page-intro';
+  }else{
+    $scope.pageClass = 'page-login';
+  }
     $scope.loginUser = {};
     $scope.signupUser = {};
     $scope.passwd = {};
