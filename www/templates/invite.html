@@ -1,0 +1,24 @@
+<div layout="column" layout-fill>
+  <md-toolbar md-theme="green">
+    <div class="md-toolbar-tools">
+    	<a ui-sref="member"><i class="fa fa-2x fa-angle-left"></i></a>
+      <h3>
+        <span>초대 하기</span>
+      </h3>
+    </div>
+  </md-toolbar>
+	<div layout="column" md-theme="green">
+		<div style="padding: 10px 10px 10px 10px;">
+			<p style="text-align:center;"><b>지인 분들을 초대해서 추억을 공유해보세요.</b><br/><br/>
+    	<span style="font-size:90%;">앱 스토어에서 <b>'도래솔-{{memorial.name}}'</b>을 검색하면 됩니다.<br/>
+			구글 플레이 스토어 또는 애플 앱 스토어에서 <br>
+      다운 받을 수 있습니다.<br/>
+			앱을 공유하고 싶은 분들에게 알려주시면 됩니다.<br/>
+			</p>
+		</div>
+      <section layout="row" layout-align="space-around center">
+      <md-button ng-click="gotoAppStore('ios')"><img ng-src="/img/badge_ios.png"></md-button>
+      <md-button ng-click="gotoAppStore('android')"><img ng-src="/img/badge_android.png"></md-button>
+    </section>
+  </div>
+</div>
