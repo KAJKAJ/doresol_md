@@ -21,12 +21,12 @@
   position: relative;
 }
 .vertical-timeline-date {
-  width: 10%;
+  width: 40px;
   float: left;
   margin-top: 20px;
 }
 .vertical-timeline-content {
-  width: 90%;
+  width: 80%;
   float: left;
   border-left: 3px #e5e5d1 solid;
   padding-left: 10px;
@@ -37,7 +37,8 @@
   height: 12px;
   background: #6fc173;
   position: absolute;
-  left: calc(10% - 5px);
+  /*left: calc(10% - 5px);*/
+  left:36px;
   top: 22px;
   border-radius: 100%;
 }

@@ -11,7 +11,7 @@
 	"APP_VERSION": {
 		"MAJOR": 1,
 		"MINOR": 0,
-		"DETAIL": 0
+		"DETAIL": 1
 	}
 })
 

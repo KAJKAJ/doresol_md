@@ -7,28 +7,28 @@
 
 <md-content class="toolbar-padding">
   <div ng-if="memorial.public||!role.isGuest">
-    <ul class="vertical-timeline" ng-repeat="story in storiesObject" id="{{story.$id}}">
+    <ul class="vertical-timeline" ng-repeat="storyKey in storiesArray" id="{{storiesObject[storyKey].$id}}">
       <li>
-        <div class="vertical-timeline-date text-small">{{story.startDate|limitTo:4}}</div>
+        <div class="vertical-timeline-date text-small">{{storiesObject[storyKey].startDate|limitTo:4}}</div>
         <div class="vertical-timeline-content">
-          <md-card ng-click="goToDetail(story.$id)">
+          <md-card ng-click="goToDetail(storiesObject[storyKey].$id)">
             <md-list>
               <md-item>
-                <md-item-content ng-if="story.file">
+                <md-item-content ng-if="storiesObject[storyKey].file">
                   <div class="md-tile-left">
-                    <img ng-src="{{hostUrl + story.file.url}}" class="thumbnail"/>
+                    <img ng-src="{{hostUrl + storiesObject[storyKey].file.url}}" class="thumbnail"/>
                   </div>
                   <div class="md-tile-content">
-                    <h3 ng-if="story.text.headline">{{story.text.headline|limitTo:30}}<span ng-if="story.text.headline.length>20">..</span></h3>
-                    <h3 ng-if="!story.text.headline">{{story.text.text|limitTo:30}}<span ng-if="story.text.text.length>20">..</span></h3>
+                    <h3 ng-if="storiesObject[storyKey].text.headline">{{storiesObject[storyKey].text.headline|limitTo:30}}<span ng-if="storiesObject[storyKey].text.headline.length>20">..</span></h3>
+                    <h3 ng-if="!storiesObject[storyKey].text.headline">{{storiesObject[storyKey].text.text|limitTo:30}}<span ng-if="storiesObject[storyKey].text.text.length>20">..</span></h3>
                   </div>
                 </md-item-content>
-                <md-item-content ng-if="!story.file">
-                  <h3 ng-if="story.text.headline">{{story.text.headline|limitTo:30}}<span ng-if="story.text.headline.length>20">...</span></h3>
-                  <h3 ng-if="!story.text.headline">{{story.text.text|limitTo:30}}<span ng-if="story.text.text.length>20">..</span></h3>
+                <md-item-content ng-if="!storiesObject[storyKey].file">
+                  <h3 ng-if="storiesObject[storyKey].text.headline">{{storiesObject[storyKey].text.headline|limitTo:30}}<span ng-if="storiesObject[storyKey].text.headline.length>20">...</span></h3>
+                  <h3 ng-if="!storiesObject[storyKey].text.headline">{{storiesObject[storyKey].text.text|limitTo:30}}<span ng-if="storiesObject[storyKey].text.text.length>20">..</span></h3>
                 </md-item-content>
-                <span class="text-muted text-small pull-left"><em>{{story.startDate}}</em></span>
-                <span class="text-muted text-small pull-right"><em><i class="fa fa-comment"></i> {{objectSize(story.comments)}}</em></span>
+                <span class="text-muted text-small pull-left"><em>{{storiesObject[storyKey].startDate}}</em></span>
+                <span class="text-muted text-small pull-right"><em><i class="fa fa-comment"></i> {{objectSize(storiesObject[storyKey].comments)}}</em></span>
                 <br/>
               </md-item>
             </md-list>

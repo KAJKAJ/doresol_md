@@ -90,13 +90,16 @@ gulp.task('sass', ['clean'], function(done) {
 var APP_VERSION = {
   MAJOR: 1,
   MINOR: 0,
-  DETAIL: 0
+  DETAIL: 1
 };
 
 
 gulp.task('config_dev', function () {
   var constants = {
     ENV: {
+      // FIREBASE_URI:"https://doresol-beta.firebaseio.com/",
+      // HOST:"http://doresol.net",
+      // MEMORIAL_KEY:"-JWg83I6imBHVjgQs87P",
       FIREBASE_URI:"https://doresol-dev.firebaseio.com/",
       HOST:"http://doresol.net:8000",
       MEMORIAL_KEY:"-J_yaUS2gsgyLbDtgzQA",
@@ -121,7 +124,8 @@ gulp.task('config_beta', function () {
     ENV: {
       FIREBASE_URI:"https://doresol-beta.firebaseio.com/",
       HOST:"http://doresol.net",
-      MEMORIAL_KEY:"-J_yaUS2gsgyLbDtgzQA",
+      // MEMORIAL_KEY:"-J_yaUS2gsgyLbDtgzQA",
+      MEMORIAL_KEY:"-JWg83I6imBHVjgQs87P",
       APP_VERSION:APP_VERSION
     }
   }
