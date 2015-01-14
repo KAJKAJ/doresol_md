@@ -6,3 +6,38 @@
 	width:40%;
 	text-align:right;
 }
+
+
+/* vertical timelne */
+.vertical-timeline {
+	padding-left:10px;
+  list-style: none;
+  margin-top:0px;
+  margin-bottom:0px;
+}
+.vertical-timeline > li {
+  overflow: hidden;
+  margin: 0;
+  position: relative;
+}
+.vertical-timeline-date {
+  width: 10%;
+  float: left;
+  margin-top: 20px;
+}
+.vertical-timeline-content {
+  width: 90%;
+  float: left;
+  border-left: 3px #e5e5d1 solid;
+  padding-left: 10px;
+}
+.vertical-timeline-content:before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: #6fc173;
+  position: absolute;
+  left: calc(10% - 5px);
+  top: 22px;
+  border-radius: 100%;
+}

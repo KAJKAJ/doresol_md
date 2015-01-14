@@ -111,7 +111,7 @@ angular.module('doresolApp')
 
         if(tempUser.profile.file.location === 'local') {
           var urlPrefix = '';
-          console.log(tempUser.profile.file.url.substring(0,1));
+          // console.log(tempUser.profile.file.url.substring(0,1));
           if(tempUser.profile.file.url.substring(0,1) !== '/') {
             urlPrefix = '/';
           }
