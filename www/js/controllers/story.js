@@ -22,7 +22,7 @@ angular
   $scope.storiesCnt = MyStory.getStoriesCnt();
 
   $scope.role = Memorial.getRole();
-console.log($scope.storiesObject);
+// console.log($scope.storiesObject);
   //set focus
   if($state.params.id){
     Util.focus($state.params.id);

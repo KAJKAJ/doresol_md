@@ -90,7 +90,7 @@ gulp.task('sass', ['clean'], function(done) {
 var APP_VERSION = {
   MAJOR: 1,
   MINOR: 0,
-  DETAIL: 1
+  DETAIL: 2
 };
 
 
